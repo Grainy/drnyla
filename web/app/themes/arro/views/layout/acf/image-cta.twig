@@ -1,0 +1,13 @@
+{% set image = post.get_field('cta_image') %}
+
+<div class="b-image-cta {% if shadow %}shadow{% endif %}" style="background-image: url({{image.url}});">
+	<div class="container h-100">
+		<div class="row h-100">
+			<div class="col-md-6 col-sm-10 ab-center-v {% if padded %}padded{% endif %}">
+				<h2>{{post.get_field('cta_header')}}</h2>
+				{{post.get_field('cta_content')}}
+				<a href="#" class="b-button b-button--signup">{{post.get_field('cta_button_text')}}</a>
+			</div>
+		</div>
+	</div>
+</div>

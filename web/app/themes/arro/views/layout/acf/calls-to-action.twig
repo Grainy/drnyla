@@ -1,0 +1,11 @@
+<div class="l-page-section l-page-section--flush b-calls-to-action">
+	{% for cta in media_item.calls_to_action %}
+	    <div class="col-md-6 b-calls-to-action__single text-center" style="background-image:url({{cta.image.url}});">
+	    	<div class="ab-center js-match-height">
+	    		<h2>{{cta.title}}</h2>
+	    		{{cta.content}}
+	    		<a href="{{cta.link}}" class="b-button">{{cta.link_text}}</a>
+	    	</div>
+	    </div>
+	{% endfor %}
+</div>

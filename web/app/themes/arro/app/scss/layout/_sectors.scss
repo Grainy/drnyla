@@ -1,0 +1,29 @@
+@include b(l-sectors){
+	background: #2b253c;
+	background-image: url("../img/logo/logo-2.svg");
+	background-image: url("../img/logo/logo-2.svg"), linear-gradient(#2b253c, #79408a);
+	background-repeat: no-repeat;
+	background-position: top center;
+	padding-top: 70px;
+
+	@include max-screen($screen-xs-max) {
+		padding-top: 0px;
+
+		h3 {
+			font-size: 18px;
+			line-height: 24px;
+			margin-bottom: 15px;
+		}
+	}
+
+	&.dark{
+		background-image: url("../img/logo/logo-2.svg");
+		background-image: url("../img/logo/logo-2.svg"), linear-gradient($black, #323232);
+		background-repeat: no-repeat;
+		background-position: top center;
+	}
+
+	h1, h2, h3, h4, h5, h6, p, li, a {
+		color: $white;
+	}
+}

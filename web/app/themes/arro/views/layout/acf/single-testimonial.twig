@@ -1,0 +1,19 @@
+{% if media_item.header_title %}
+	<div class="l-page-section l-page-section--flush b-single-testimonial {{media_item.theme}}">
+	{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+{% else %}
+    <div class="l-page-section b-single-testimonial {{media_item.theme}}">
+{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				{% set testimonial = TimberPost(media_item.testimonial) %}
+
+				<div class="b-single-testimonial__testimonial text-center">
+					{{testimonial.content}}
+					<h6>{{testimonial.title}}</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+@include b(b-products-grid){
+	.row {
+		margin-bottom: 10px;
+	}
+
+	@include e(product){
+		@include m(image){
+			background: $white;
+
+			img {
+				@extend %rel-center;
+				display: block;
+			}
+		}
+
+		@include m(content){
+			h3 {
+				font-size: 28px;
+				line-height: 36px;
+				margin-top: 19;
+				margin-bottom: 5px;
+				font-weight: 700;
+			}
+
+			p {
+				font-size: 16px;
+				line-height: 26px;
+				margin-top: 15px;
+			}
+		}
+	}
+}

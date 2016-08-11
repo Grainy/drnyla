@@ -1,0 +1,179 @@
+@include b(l-help) {
+	@include e(faqs) {
+
+		.faq {
+			border: 1px solid #CFCFCF;
+			background-color: #F3F5F7;
+			margin-bottom: 3px;
+
+			section, .question-container {
+				cursor: pointer;
+				user-select: none;
+				position: relative;
+
+				h4 {
+					margin: 0;
+					font-weight: 400;
+					padding: 17px 30px;
+					position: relative;
+
+					span {
+						color: #9B9B9B;
+						transition: all .5s ease;
+						display: block;
+						position: absolute;
+						right: 30px;
+						top: 50%;
+						font-size: 20px;
+						transform: translate(0, -50%);
+
+						&.active {
+							@include fa-icon-rotate(45deg, 1);
+						}
+					}
+
+					&.hidePlus {
+						font-weight: 700;
+
+						span {
+							transform: translate(0, -50%) rotate(45deg);
+						}
+					}
+				}
+			}
+
+			.question-container {
+				border: 1px solid #CFCFCF;
+				background-color: $white;
+				width: 98%;
+				margin: 0 auto;
+				margin-bottom: 3px;
+			}
+
+			.qanda {
+				display: none;
+			}
+
+			.question {
+				&.active {
+					font-weight: 700;
+
+					span {
+						transform: translate(0, -50%) rotate(45deg);
+					}
+				}
+			}
+
+			.answer {
+				display: none;
+				padding: 0 30px 17px;
+
+				p {
+					margin: 13px 0;
+				}
+			}
+		}
+	}
+
+	@include e(sidebar){
+		padding: 30px 30px;
+		margin-bottom: 50px;
+		border: 1px solid $brandGrey;
+		position: relative;
+
+		h3 {
+			font-size: 28px;
+			line-height: 36px;
+			margin-top: 0;
+			margin-bottom: 5px;
+			font-weight: 500;
+		}
+
+		p, a {
+			font-size: 18px;
+			line-height: 26px;
+			color: $header-font-color;
+		}
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		@include m(map) {
+			width: 100%;
+			height: 164px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		#map_canvas img, .map_canvas img {
+			max-width: none !important;
+		}
+
+		@include m(button){
+			width: 75%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		.b-button {
+			position: absolute;
+			left: 50%;
+			transform: skew(20deg) translate(-50%);
+			bottom: -22px;
+			z-index: 1;
+		}
+
+		@include m(link){
+			color: $black;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 700;
+			display: inline-block;
+			position: relative;
+
+			&:after {
+				content: "";
+				width: 100%;
+				height: 3px;
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				@include gradBlue;
+			}
+		}
+
+		@include m(social){
+			margin-bottom: 0;
+
+			li {
+				display: inline-block;
+				padding: 0 21px;
+
+				&:first-child {
+					padding-left: 0;
+				}
+
+				&:last-child {
+					padding-right: 0;
+				}
+
+				a {
+					color: $brandPurple;
+					background: -webkit-linear-gradient($brandPurple, $brandPurpleLight);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					text-decoration: none;
+					font-size: 32px;
+				}
+			}
+		}
+	}
+}

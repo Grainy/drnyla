@@ -1,0 +1,23 @@
+<div class="l-page-section l-page-section--flush b-boxed-icon-ctas {{media_item.theme}}">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 b-boxed-icon-ctas__info text-center">
+				{% for info in media_item.ctas %}
+					<div class="b-boxed-icon-ctas__info--box">
+						<div class="img-wrap">
+							<img src="{{info.value.url}}" alt="">
+						</div>
+						<p>{{info.title}}</p>
+						{{info.content}}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+

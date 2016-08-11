@@ -1,0 +1,130 @@
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'arro' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sign-up {
+    &:before {
+        content: $icon-sign-up;
+    }
+}
+.icon-rosette {
+    &:before {
+        content: $icon-rosette;
+    }
+}
+.icon-plane {
+    &:before {
+        content: $icon-plane;
+    }
+}
+.icon-card {
+    &:before {
+        content: $icon-card;
+    }
+}
+.icon-lock {
+    &:before {
+        content: $icon-lock;
+    }
+}
+.icon-check {
+    &:before {
+        content: $icon-check;
+    }
+}
+.icon-burger {
+    &:before {
+        content: $icon-burger;
+    }
+}
+.icon-arrow-right {
+    &:before {
+        content: $icon-arrow-right;
+    }
+}
+.icon-play {
+    &:before {
+        content: $icon-play;
+    }
+}
+.icon-arrow-left {
+    &:before {
+        content: $icon-arrow-left;
+    }
+}
+.icon-pin {
+    &:before {
+        content: $icon-pin;
+    }
+}
+.icon-arrow-left-alt {
+    &:before {
+        content: $icon-arrow-left-alt;
+    }
+}
+.icon-arrow-right-alt {
+    &:before {
+        content: $icon-arrow-right-alt;
+    }
+}
+.icon-plus {
+    &:before {
+        content: $icon-plus;
+    }
+}
+.icon-search {
+    &:before {
+        content: $icon-search;
+    }
+}
+.icon-phone {
+    &:before {
+        content: $icon-phone;
+    }
+}
+.icon-email {
+    &:before {
+        content: $icon-email;
+    }
+}
+.icon-facebook {
+    &:before {
+        content: $icon-facebook;
+    }
+}
+.icon-twitter {
+    &:before {
+        content: $icon-twitter;
+    }
+}
+.icon-googleplus {
+    &:before {
+        content: $icon-googleplus;
+    }
+}
+.icon-linkedin {
+    &:before {
+        content: $icon-linkedin;
+    }
+}
+.icon-youtube {
+    &:before {
+        content: $icon-youtube;
+    }
+}
+.icon-rss {
+    &:before {
+        content: $icon-rss;
+    }
+}

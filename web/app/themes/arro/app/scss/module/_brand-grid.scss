@@ -1,0 +1,98 @@
+@include b(b-brand-grid){
+	.row {
+	    margin: 0;
+	}
+
+	@include e(module){
+		padding: 0;
+
+		.big-link {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+
+			&:after {
+				display: none !important;
+			}
+		}
+
+		@include m(background) {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			cursor: pointer;
+			background-size: cover;
+
+			transition: all .5s ease;
+
+			&.blur {
+				-webkit-filter: blur(3px);
+				-moz-filter: blur(3px);
+				-o-filter: blur(3px);
+				-ms-filter: blur(3px);
+				filter: blur(3px);
+			}
+		}
+
+		@include m(content) {
+			background-color: $brandGreyDark;
+			background-repeat: no-repeat;
+			background-size: cover;
+			padding: 30px 20px;
+			min-height: 240px;
+			cursor: pointer;
+
+			@include min-screen($screen-sm) {
+				min-height: 300px;
+			}
+
+			> div {
+				width: 90%;
+
+				h3, p, a {
+					color: $white;
+				}
+
+				h3 {
+					margin: 0;
+					font-weight: 700;
+					font-size: 32px;
+					line-height: 36px;
+
+					@include min-screen($screen-sm) {
+						font-size: 40px;
+						line-height: 42px;
+					}
+				}
+
+				p {
+					margin-top: 40px;
+					font-size: 16px;
+					line-height: 26px;
+					font-weight: 400;
+				}
+
+				a {
+					font-size: 14px;
+					line-height: 17px;
+					text-decoration: none;
+					text-transform: uppercase;
+					font-weight: 700;
+					position: relative;
+
+					&:after {
+						content: "";
+						width: 100%;
+						height: 3px;
+						display: block;
+						position: absolute;
+						bottom: -9px;
+						left: 0;
+						@include gradRed;
+					}
+				}
+			}
+		}
+	}
+}

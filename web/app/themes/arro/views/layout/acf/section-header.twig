@@ -1,0 +1,13 @@
+<div class="b-section-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				{% if media_item.header_title %}
+					<h2 class="b-section-header__title js-section-header">{{media_item.header_title}}</h2>
+				{% elseif options.blog_header_title %}
+					<h2 class="b-section-header__title js-section-header">{{options.blog_header_title}}</h2>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

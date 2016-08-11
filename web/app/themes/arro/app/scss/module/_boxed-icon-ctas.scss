@@ -1,0 +1,46 @@
+@include b(b-boxed-icon-ctas){
+	padding-bottom: 66px;
+
+	@include e(info){
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: row wrap;
+		margin: 30px 0;
+
+		@include m(box){
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+			align-content: flex-start;
+			flex: 1;
+			-webkit-flex: 1 1 33%; /* Safari wrap fix */
+
+			@include min-screen($screen-sm-min) {
+				width: 33%;
+				min-width: 33%;
+				max-width: 33%;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			.img-wrap {
+				display: inline-block;
+				border: 8px solid $brandPurpleLight;
+				width: 50%;
+				height: 87px;
+				padding: 6px 0 13px 0;
+
+				img {
+					display: block;
+					margin: 0 auto;
+					position: relative;
+					top: 50%;
+					transform: translate(0,-50%);
+				}
+			}
+		}
+	}
+}

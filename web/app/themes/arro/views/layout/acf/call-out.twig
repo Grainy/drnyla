@@ -1,0 +1,24 @@
+{% if sector == 'business' %}
+	{% set theme = 'dark' %}
+{% else %}
+    {% set theme = '' %}
+{% endif %}
+
+<div class="l-page-section">
+	<div class="b-call-out">
+		<div class="row h-100">
+			{% for callout in post.get_field('call_out_thin') %}
+			    <div class="col-sm-6 b-call-out__box js-match-height">
+			    	<div class="b-call-out__box--inner h-100 {{theme}}">
+			    		<h5>{{callout.call_out_thin_heading}}</h5>
+			    		<p>{{callout.call_out_thin_content}}</p>
+			    	</div>
+			    </div>
+			{% endfor %}
+
+			<div class="b-call-out__icon">
+				<span class="icon-lock b-call-out__icon--inner"></span>
+			</div>
+		</div>
+	</div>
+</div>

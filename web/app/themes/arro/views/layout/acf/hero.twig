@@ -1,0 +1,134 @@
+
+{% if postType == 'page' %}
+	{% set slider = post.get_field('slider') %}
+{% endif %}
+
+{% if postType == 'single' %}
+
+{% if post.get_field('single_banner_image') %}
+	{% set bgImg = post.get_field('single_banner_image') %}
+{% else %}
+	{% set bgImg = options.default_single_post_hero %}
+{% endif %}
+
+<div class="l-page-section l-page-section--flush">
+	<div class="l-hero ">
+		<div class="h-100">
+			<ul class="slides h-100">
+				<li class="l-hero__slide h-100 {% if post.get_field('has_overlay') %}apply-tint{% endif %}" style="background-image:url('{{bgImg}}')">
+					<div class="ab-center text-center">
+						<div class="l-hero__text col-centered text-center">
+							<div class="col-md-12">
+								<h1 class="{{post.get_field('single_banner_text_colour')}}">{{post.title}}</h1>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% else %}
+
+<div class="l-page-section l-page-section--flush">
+	<div class="l-hero ">
+		<div class="{% if slider|length > 1 %}flexslider{% endif %} h-100">
+			<ul class="slides h-100">
+				{% for slide in slider %}
+					{% if function('wpmd_is_notdevice') and slide.has_video %}
+						<div id="wistia_hero_{{slide.wistia_video_id}}" class="js-wistia-hero wistia_embed l-hero__video" data-wistia-id="{{slide.wistia_video_id}}" data-video-foam="false">&nbsp;</div>
+
+						{% if slide.title %}
+							<div class="ab-center text-center l-hero__slide {% if post.get_field('apply_tint') %}apply-tint{% endif %}">
+								<div class="l-hero__text col-centered text-center">
+									<div class="col-md-12">
+										<h1>{{slide.title}}</h1>
+
+										{% if slide.has_button %}
+											<a href="#" class="b-button  b-button--signup">{{slide.link_text}}</a>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+					    {% endif %}
+
+						<li class="container mastercard-container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="mastercard-logo">
+										<img src="{{site.theme.link}}/app/img/logo/mastercard.png" alt="">
+									</div>
+								</div>
+							</div>
+						</li>
+					{% else %}
+
+					<li class="l-hero__slide h-100 {% if slide.apply_tint %}apply-tint {% endif %} {% if slide.has_overlay %}has-overlay {% endif %}" style="background-image:url('{{TimberImage(slide.image)}}')">
+						{% if slide.has_overlay %}
+							<div class="ab-center">
+								<img src="{{slide.overlay_image.url}}" alt="{{slide.overlay_image.alt}}">
+							</div>
+						{% else %}
+							{% if slide.title %}
+								<div class="ab-center text-center">
+									<div class="l-hero__text col-centered text-center">
+										<div class="col-md-12">
+											<h1>{{slide.title}}</h1>
+										</div>
+
+										{% if slide.column_image.url and slide.content %}
+											<div class="col-sm-6">
+												<img src="{{slide.column_image.url}}" alt="">
+											</div>
+
+											<div class="col-sm-6 dont-show-me-on-phones">
+												{{slide.content}}
+												<a href="{{slide.link}}" class="b-button dont-show-me-on-phones">{{slide.link_text}}</a>
+											</div>
+
+										{% elseif slide.content %}
+											<div class="col-md-12 text-center">
+												{{slide.content}}
+												<a href="{{slide.link}}" class="b-button dont-show-me-on-phones">{{slide.link_text}}</a>
+											</div>
+										{% elseif slide.column_image.url %}
+											<div class="col-md-12 text-center">
+												<img src="{{slide.column_image.url}}" alt="">
+											</div>
+										{% endif %}
+									</div>
+								</div>
+						    {% endif %}
+						{% endif %}
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% if slider[0].content %}
+	<div class="l-page-section grey show-on-all-phones">
+		<div class="container">
+			<div class="row">
+				{% for slide in slider %}
+					{% if slide.content %}
+						<div class="col-md-12">
+							<p>{{slide.content}}</p>
+						</div>
+					{% endif %}
+
+					{% if slide.link %}
+						<div class="col-md-12">
+							<a href="{{slide.link}}" class="b-button">{{slide.link_text}}</a>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% endif %}

@@ -1,0 +1,310 @@
+.burger-container {
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translate(0, -50%);
+
+	width: 40px;
+	height: 40px;
+	background: $brandPurpleLight;
+
+	.inner {
+		position: relative;
+		top: 50%;
+		left: 7px;
+		transform: translate(0%, -50%);
+	}
+
+	.burger-icon {
+		@include burger(26px, 4px, 5px, $white, 0, .5s);
+		margin-top: 0;
+		margin-bottom: 0;
+
+	    &.menu-active {
+	        @include burger-to-cross;
+	    }
+	}
+
+	@include min-screen($screen-md-min) {
+		display: none;
+	}
+}
+
+.mobile-sign-up {
+	position: absolute;
+	top: 50%;
+	right: 70px;
+	transform: translate(0,-50%);
+
+	.b-button {
+		min-width: 100px;
+		font-size: 16px;
+		padding: 6px 16px 8px;
+	}
+}
+
+@include b(l-masthead){
+	width: 100%;
+	height: 70px;
+	position: fixed;
+	top:0;
+	z-index: 2001;
+	background-color: rgba(43, 37, 60, .96);
+
+	&.cookie-active {
+		top: 62px;
+	}
+
+	&.dark {
+		background-color: rgba(29, 29, 27, .96);
+	}
+
+	@include min-screen($screen-sm-min) {
+		height: 125px;
+	}
+
+	@include e(container) {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: row wrap;
+
+		.masthead-item {
+			align-content: flex-start;
+			flex: 1;
+		}
+	}
+
+	@include e(logo) {
+		@include max-screen($screen-sm-min) {
+			padding-left: 17px;
+		}
+
+		@include m(img) {
+			display: block;
+
+			width: 83px;
+			height: 32px;
+			background: url("../img/logo/logo.png") no-repeat;
+			@include image-2x("../img/logo/logo@2x.png", contain);
+			@extend %rel-center-v;
+
+			@include min-screen($screen-sm-min) {
+				width: 129px;
+				height: 50px;
+			}
+		}
+	}
+
+	@include e(invite) {
+		position: relative;
+		top: 50%;
+		transform: translate(0,-50%);
+		display: none;
+
+		.b-button {
+			float: right;
+			padding: 10px 36px 12px;
+		}
+
+		@include min-screen($screen-md-min) {
+			display: block;
+		}
+	}
+
+	@include e(nav) {
+		position: relative;
+		top: 50%;
+		transform: translate(0,-50%);
+		flex: 3 !important;
+		text-align: center;
+
+		@include m(item) {
+			position: relative;
+			display: inline-block;
+			margin-right: 60px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			@include max-screen($screen-md-max) {
+				margin-right: 30px;
+			}
+
+			&:after {
+				content: "";
+				display: block;
+				height: 0px;
+				width: 100%;
+				position: absolute;
+				bottom: -6px;
+				transition: height .25s ease;
+			}
+
+			&.last-child {
+				margin-right: 0 !important;
+			}
+
+			&.current-menu-item, &.current-page-ancestor, &.current_page_parent {
+				&:after {
+					height: 4px;
+					background: $brandOrange;
+				}
+			}
+
+			&:hover {
+				&:after {
+					height: 4px;
+					background: $brandGrey;
+				}
+			}
+
+			a, span {
+				text-decoration: none;
+				color: $white;
+				font-weight: 500;
+				padding: 9px 0;
+				@include rem((
+					font-size: 22px,
+					line-height: 28px
+				));
+
+				@include screen($screen-md-min, $screen-md-max) {
+					padding: 3px;
+					@include rem((
+						font-size: 18px,
+						line-height: 18px
+					));
+				}
+
+				@include max-screen($screen-sm) {
+					padding: 10px;
+				}
+
+
+			}
+		}
+
+		@include m(mobile) {
+			// opacity: 0;
+			// visibility: hidden;
+			position: fixed;
+			width: 100%;
+			top: 70px;
+			z-index: 2002;
+			// transition: all .25s ease;
+
+			@include min-screen($screen-sm-min){
+				top: 125px;
+			}
+
+			// &.menu-active {
+			// 	opacity: 1;
+			// 	visibility: visible;
+			// }
+		}
+
+		@include m(mobile-primary-items) {
+			margin: 0;
+
+			.b-button {
+				display: none;
+			}
+
+			li {
+				background: rgba($brandPurple, .94);
+				border-top: 1px solid #171421;
+
+				&:last-child {
+					border-bottom: 1px solid #171421;
+				}
+
+				a {
+					font-family: $header-font-family;
+					color: $white;
+					text-decoration: none;
+					font-size: 18px;
+					line-height: 28px;
+					display: block;
+					width: 100%;
+					height: 100%;
+					// padding: 22px;
+				}
+			}
+		}
+	}
+
+	@include e(subnav) {
+		display: none;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		left: 0;
+
+		@include m(item) {
+			background: $brandOrange;
+			border-radius: 3px;
+			box-shadow: inset 0px 1px 3px 1px rgba(255,255,255,0.3);
+			display: block;
+			padding: 10px 36px 12px;
+			width: 140%;
+			position: relative;
+			left: -20%;
+			margin-top: 6px;
+
+			&:hover {
+				background: $brandOrangeLight;
+
+				a {
+					color: $body-font-color;
+				}
+			}
+
+			&:first-child {
+				margin-top: 24px;
+				&:before {
+					-webkit-backface-visibility: hidden;
+					background: $brandOrange;
+					border-radius: 2px;
+					box-shadow: -3px -3px 5px 0px rgba(0,0,0,0.1);
+					content: "";
+					display: block;
+					height: 20px;
+					position: absolute;
+					transform: rotate(45deg) skew(5deg, 5deg) translate(-50%, 0);
+					top: 0px;
+					left: 50%;
+					width: 20px;
+				}
+
+				&:hover {
+					&:before {
+						background: $brandOrangeLight;
+					}
+				}
+			}
+		}
+	}
+
+	& + .l-page-section:not(.l-page-section--flush){
+		padding-top: 70px;
+
+		@include min-screen($screen-sm-min) {
+			padding-top: 125px;
+		}
+	}
+}
+
+.animated {
+	transition: transform .5s linear;
+}
+
+.animated.slideUp {
+	transform: translateY(-100%);
+}
+
+.animated.slideDown {
+	transform: translateY(0);
+}
+

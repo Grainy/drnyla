@@ -1,0 +1,15 @@
+<div class="l-page-section b-how">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 text-center">
+			<h2>{{post.get_field('how_heading')}}</h2>
+			<p>{{post.get_field('how_intro_content')}}</p>
+
+			{% for icon in post.get_field('how_icons') %}
+			    <div class="col-md-6 b-how__icon">
+			    	<h5><span class="icon-{{icon.icon}}"></span>{{icon.title}}</h5>
+			    	<p>{{icon.content}}</p>
+			    </div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

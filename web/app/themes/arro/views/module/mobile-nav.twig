@@ -1,0 +1,17 @@
+<nav class="mobile l-masthead__nav--mobile show-on-all-tabs js-mobile-nav">
+	<ul>
+		<li class='nav-item'>
+			<div class='has-dropdown'>
+				<ul class='dropdown l-masthead__nav--mobile-primary-items'>
+					{% for item in primaryNav.get_items %}
+						<li class="dropdown-item {{item.classes | join(' ')}}">
+							<a class="" href="{{item.get_link}}">
+								{{item.title}}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</li>
+	</ul>
+</nav>

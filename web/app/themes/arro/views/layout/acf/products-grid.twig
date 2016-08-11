@@ -1,0 +1,27 @@
+<div class="l-page-section l-page-section--grey">
+	<div class="container b-products-grid">
+		<div class="row">
+			{% for product in media_item.featured_products %}
+				{% set product = TimberPost(product) %}
+
+				<div class="col-md-4 b-products-grid__product">
+					<div class="b-products-grid__product--image js-match-height">
+						<img src="{{product.thumbnail}}" alt="">
+					</div>
+					<div class="b-products-grid__product--content">
+						<h3>{{product.title}}</h3>
+						{{product.content}}
+					</div>
+				</div>
+
+				{% if loop.index is divisibleby(3) and not loop.last %}
+					</div>
+					<div class="row">
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="row text-center">
+			<a href="{{media_item.button_link}}" target="_blank" class="b-button b-button--secondary"><span>{{media_item.button_text}}</span></a>
+		</div>
+	</div>
+</div>

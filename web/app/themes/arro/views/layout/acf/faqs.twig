@@ -1,0 +1,67 @@
+<div class="l-page-section l-page-section--{{color}}">
+	<div class="container">
+		<div class="l-help">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="l-help__faqs">
+						{% for faq in media_item.faqs %}
+							<div class="faq">
+								<section>
+									<h4 class="title">{{faq.title}} <span class="icon-plus"></span></h4>
+
+									{% for item in faq.faq %}
+										<div class="qanda">
+											<div class="question-container">
+												<h4 class="question">{{item.question}} <span class="icon-plus"></span></h4>
+
+												<div class="answer">
+													{{item.answer}}
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</section>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="l-help__sidebar">
+						<h3>{{media_item.sidebar_title}}</h3>
+
+						{{media_item.sidebar_content}}
+
+						{% if media_item.sidebar_link %}
+							<a href="{{media_item.sidebar_link}}" class="l-help__sidebar--link">{{media_item.sidebar_link_text}}</a>
+						{% endif %}
+					</div>
+
+					<div class="l-help__sidebar">
+						<h3>Follow us</h3>
+
+						<ul class="l-help__sidebar--social">
+							{% if options.facebook %}
+								<li><a href="{{options.facebook}}"><span class="icon-facebook"></span></a></li>
+							{% endif %}
+
+							{% if options.twitter %}
+								<li><a href="{{options.twitter}}"><span class="icon-twitter"></span></a></li>
+							{% endif %}
+
+							{% if options.youtube %}
+								<li><a href="{{options.youtube}}"><span class="icon-youtube"></span></a></li>
+							{% endif %}
+
+							{% if options.linkedin %}
+								<li><a href="{{options.linkedin}}"><span class="icon-linkedin"></span></a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

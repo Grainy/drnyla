@@ -1,0 +1,80 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'layout/acf/hero.twig' with { 'postType': 'single' } %}
+
+<div class="l-page-section l-single-post">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 ">
+				<div class="l-single-post__content">
+					{{post.content}}
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="l-single-post__sidebar text-center">
+					<h6>Share this article</h6>
+
+					<ul class="l-single-post__sidebar--social">
+						<li><a href="#" class="js-fb-share"><span class="icon-facebook"></span></a></li>
+						<li><a href="http://twitter.com/home?status={{post.title}}+{{currentUrl}}"><span class="icon-twitter"></span></a></li>
+						<li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{currentUrl}}&title={{post.title}}"><span class="icon-linkedin"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% if postType == 'post' %}
+	<div class="l-page-section l-page-section--flush l-page-section--grey b-related-posts">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h3>You may also like</h3>
+				</div>
+			</div>
+			<div class="row">
+				{% for post in relatedPosts %}
+					<div class="{% if loop.first %}col-lg-4 col-sm-12 full {% else %} col-lg-4 col-sm-6 {% endif %} b-latest-articles__article">
+						{% if post.thumbnail %}
+							<a href="{{post.link}}" class="img-link {% if loop.first %}smaller{% endif %}"><img src="{{post.thumbnail|resize(370, 250)}}" alt=""></a>
+						{% else %}
+							<a href="{{post.link}}" class="img-link {% if loop.first %}smaller{% endif %}"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
+						{% endif %}
+
+						<div class="b-latest-articles__article--container js-match-height {% if loop.first %}smaller{% endif %}">
+							<h5><a href="{{post.link}}">{{post.title}}</a></h5>
+
+							<div class="b-latest-articles__article--meta">
+								<span class="tags">
+									{% for term in post.terms() %}
+									    <li class="{{term.slug}}">
+									    	<div class="dot"></div>
+									    	<a href="{{term.link}}">{{term.name}}</a>
+									    </li>
+									{% endfor %}
+
+									<span class="date">
+										<p><strong>{{post.post_date|time_diff}}</strong></p>
+									</span>
+								</span>
+							</div>
+
+							{% if post.get_field('custom_blog_intro') %}
+								<p class="excerpt">{{post.get_field('custom_blog_intro')}}</p>
+							{% else %}
+							    <p class="excerpt">{{post.content|excerpt(20)}}</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% include 'footer.twig' with {'pullup': '120'} %}
+{% endblock %}

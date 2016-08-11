@@ -1,0 +1,86 @@
+@include b(b-related-resource) {
+	@include e(post) {
+		background-color: $white;
+		margin-bottom: 30px;
+		float: left;
+		width: 100%;
+
+		@include m(category) {
+			padding: 15px;
+			background-position: center center;
+			background-size: cover;
+			min-height: 234px;
+			width: 257px;
+			float: left;
+			text-align: center;
+
+			@include max-screen($screen-xs-max) {
+				min-height: auto;
+				width: 100%;
+			}
+
+			@include screen($screen-is-min, $screen-is-max) {
+				min-height: 200px;
+				width: 200px;
+			}
+
+			h3 {
+				color: $white;
+				font-weight: 700;
+				font-size: 30px;
+				line-height: 36px;
+			}
+		}
+
+		@include m(category-single) {
+			width: 100%;
+		}
+
+		@include m(details) {
+			padding: 30px;
+			min-height: 234px;
+			float: left;
+
+			@include max-screen($screen-xs-max) {
+				min-height: auto;
+			}
+
+			@include screen($screen-is-min, $screen-is-max) {
+				min-height: 200px;
+			}
+
+			h2 {
+				font-size: 24px;
+				line-height: 34px;
+				margin: 0;
+
+				a {
+					color: $brandPurple;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+
+			.excerpt {
+				font-size: 14px;
+				line-height: 28px;
+				margin: 0;
+			}
+
+			.relatedLink {
+				text-transform: uppercase;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: 12px;
+				line-height: 30px;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

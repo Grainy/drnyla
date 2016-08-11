@@ -1,0 +1,25 @@
+<div class="b-image-text-button">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			{% for item in media_item.block %}
+				{% if item.link_type == 'internal' %}
+					{% set link = item.internal_link %}
+				{% elseif item.link_type == 'external' %}
+					{% set link = item.external_link %}
+				{% elseif item.link_type == 'file' %}
+					{% set link = item.file.url %}
+				{% endif %}
+
+				<div class="col-md-3 col-sm-6 b-image-text-button__block text-center">
+					<img src="{{item.image.url}}" alt="" class="b-image-text-button__block--image">
+					<p class="b-image-text-button__block--content">{{item.text}}</p>
+					<a href="{{link}}" class="b-button b-image-text-button__block--button">{{item.link_text}}</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

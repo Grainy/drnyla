@@ -1,0 +1,41 @@
+{% if media_item.link_type == 'file' %}
+	{% set link = media_item.link.url %}
+	{% set target = 'target="_blank"' %}
+
+{% elseif media_item.link_type == 'internal' %}
+    {% set link = media_item.internal_link %}
+
+{% else %}
+    {% set link = media_item.external_link %}
+    {% set target = 'target="_blank"' %}
+{% endif %}
+
+<div class="l-page-section">
+	<div class="b-two-column-call-to-action">
+		<div class="container">
+			<div class="row">
+				{% if media_item.content %}
+					<div class="col-md-8">
+						{{media_item.content}}
+					</div>
+				{% endif %}
+
+				<div class="col-md-4 b-two-column-call-to-action__box">
+					<div class="b-two-column-call-to-action__box--image">
+						{% if media_item.image %}
+							<img src="{{media_item.image.url}}" alt="">
+						{% endif %}
+
+					</div>
+					<div class="b-two-column-call-to-action__box--content text-center">
+						{{media_item.cta_content}}
+					</div>
+
+					<div class="b-two-column-call-to-action__box--button text-center">
+						<a href="{{link}}" class="b-button" {{target ? target : ''}}><span>{{media_item.link_text}}</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

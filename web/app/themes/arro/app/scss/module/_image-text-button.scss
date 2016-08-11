@@ -1,0 +1,9 @@
+@include b(b-image-text-button){
+	padding-bottom: 88px;
+
+	@include e(block){
+		@include max-screen($screen-sm-max) {
+			margin-bottom: 15px;
+		}
+	}
+}

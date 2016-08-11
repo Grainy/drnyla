@@ -1,0 +1,63 @@
+@include b(l-archive) {
+	background-color: #F5F5F5;
+
+	@include max-screen($screen-xs-max) {
+		padding-top: 20px;
+	}
+
+	.intro {
+		p {
+			margin-bottom: 0;
+		}
+	}
+
+	.row {
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.b-latest-articles__article {
+			// position: relative;
+			// margin-bottom : 40px;
+			margin-top: 44px;
+
+			@include max-screen($screen-xs-max) {
+				padding-top: 20px;
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			h5 {
+				margin-bottom: 8px;
+
+				a {
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+
+			p {
+				font-size: 20px;
+				line-height: 28px;
+
+				@include max-screen($screen-xs-max) {
+					font-size: 16px;
+					line-height: 24px;
+				}
+			}
+		}
+	}
+
+	.pagination {
+		margin: 25px 0;
+
+		@include max-screen($screen-xs-max) {
+			margin: 0;
+		}
+	}
+}
+
+

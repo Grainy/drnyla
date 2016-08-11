@@ -1,0 +1,59 @@
+@include b(b-icon-ctas){
+	@include e(container){
+		@include min-screen($screen-sm-min) {
+			display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+			flex-flow: row wrap;
+		}
+	}
+
+	@include e(single){
+		@include max-screen($screen-xs-max) {
+			margin-bottom: 30px;
+		}
+
+		@include min-screen($screen-sm-min) {
+			// padding: 0 25px;
+			max-width: 50%;
+			align-content: flex-start;
+			flex: 1;
+		}
+	}
+
+	@include e(icon){
+		height: 65px;
+		width: 65px;
+		display: block;
+		margin: 0 auto 35px;
+		background-position: center center;
+		background-size: contain;
+		background-repeat: no-repeat;
+
+		@include max-screen($screen-xs-max) {
+			margin-bottom: 0;
+		}
+	}
+
+	@include e(content){
+		margin-bottom: 10px;
+		padding: 0 10px;
+
+		p {
+			font-size: 20px;
+			line-height: 28px;
+
+			@include max-screen($screen-xs-max) {
+				font-size: 18px;
+				line-height: 26px;
+				margin-top: 10px;
+			}
+		}
+	}
+
+	@include e(button){
+		margin-bottom: 70px;
+	}
+}
+
+

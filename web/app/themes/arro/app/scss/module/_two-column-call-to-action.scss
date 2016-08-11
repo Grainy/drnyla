@@ -1,0 +1,32 @@
+@include b(b-two-column-call-to-action){
+	@include e(box){
+		border: 1px solid $brandGrey;
+		background-size: cover;
+		padding: 0;
+
+		@include m(image){
+			border-bottom: 1px solid $brandGrey;
+			background-color: #F3F5F7;
+
+			img {
+				margin: 0 auto;
+				padding: 24px 0;
+				display: block;
+			}
+		}
+
+		@include m(content){
+			p {
+				font-weight: 400;
+				font-size: 18px;
+				line-height: 26px;
+				margin-bottom: 0;
+				padding: 19px 20px 0;
+			}
+		}
+
+		@include m(button){
+			margin: 34px 0;
+		}
+	}
+}

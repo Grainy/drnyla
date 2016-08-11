@@ -1,0 +1,9 @@
+<div class="l-page-section l-page-section--flush b-secondary-slider">
+	<div class="secondary-flexslider h-100">
+		{% for slide in media_item.slider %}
+			<li class="b-secondary-slider__slide" style="background-image:url('{{slide.image}}')">
+				<a href="{{slide.link}}" class="b-secondary-slider__slide--link"></a>
+			</li>
+		{% endfor %}
+	</div>
+</div>

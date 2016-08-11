@@ -1,0 +1,39 @@
+<div class="b-secondary-nav">
+	<div class="container">
+		<div class="row">
+			<div class="dont-show-me-on-phones">
+				<div class="col-md-12">
+					<ul class="b-secondary-nav__nav">
+						<li class="b-secondary-nav__nav--link">
+							<a href="/{{postType}}" {% if function('current_slug') == postType %}class="active"{% endif %}>All</a>
+						</li>
+						{% for category in categories %}
+							{% if category.slug == 'uncategorized' %}
+							{% else %}
+								<li class="b-secondary-nav__nav--link">
+									<a href="{{category.link}}" {% if function('current_slug') == category.slug %}class="active"{% endif %}>{{category.title}}</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<div class="b-secondary-nav-mobile show-on-all-phones">
+				<form action="#">
+					<select name="secondary-nav" id="secondary-nav" class="fancy-select js-archive-filter">
+						<option value="all" data-url="/news">All</option>
+
+						{% for category in categories %}
+							{% if category.slug == 'uncategorized' %}
+							{% else %}
+								<option value="{{category.link}}">{{category.title}}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,88 @@
+{% extends "base.twig" %}
+{% block content %}
+	{% include 'layout/acf/hero.twig' with {'postType': 'page'} %}
+
+	<div class="l-home">
+		<div class="container">
+			<div class="l-page-section l-home__intro">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">
+						{{post.get_field('single_column_text_content')}}
+					</div>
+				</div>
+			</div>
+
+			{% include 'layout/acf/call-out.twig' %}
+
+			{% for section in post.get_field('two_column_image_block') %}
+				<div class="l-page-section b-two-column-image">
+					<div class="row">
+						<div class="col-md-6 no-p-mob b-two-column-image__image {% if section.image_alignment == 'right' %}pull-right p-left {% else %} p-right {% endif %} ">
+							<img src="{{section.image.url}}" alt="">
+						</div>
+
+						<div class="col-md-6 b-two-column-image__content {% if section.image_alignment == 'right' %}p-right {% else %} p-left {% endif %}">
+							{{section.content}}
+
+							<a href="{{section.link}}" class="b-button b-button--secondary js-sector-"><span>Learn more</span></a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+			{% include 'layout/acf/how.twig' %}
+		</div>
+	</div>
+
+	<div class="b-latest-articles">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h2>Straightforward stuff</h2>
+				</div>
+				{% for article in posts %}
+					<div class="{% if loop.first %}col-lg-4 col-sm-12 full {% else %} col-lg-4 col-sm-6 {% endif %} b-latest-articles__article">
+						{% if article.thumbnail %}
+							<a href="{{article.link}}" class="img-link {% if loop.first %}smaller{% endif %}"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
+						{% else %}
+							<a href="{{article.link}}" class="img-link {% if loop.first %}smaller{% endif %}"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
+						{% endif %}
+						<div class="b-latest-articles__article--container js-match-height {% if loop.first %}smaller{% endif %}">
+							<h5><a href="{{article.link}}">{{article.title}}</a></h5>
+
+							<div class="b-latest-articles__article--meta">
+								<span class="tags">
+									{% for term in article.terms() %}
+									    <li class="{{term.slug}}">
+									    	<div class="dot"></div>
+									    	<a href="{{term.link}}">{{term.name}}</a>
+									    </li>
+									{% endfor %}
+
+									<span class="date">
+										<p><strong>{{article.post_date|time_diff}}</strong></p>
+									</span>
+								</span>
+							</div>
+
+							{% if article.get_field('custom_blog_intro') %}
+								<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
+							{% else %}
+							    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="row text-center">
+				<a href="/blog" class="b-button b-button--secondary">View all our helpful articles</a>
+			</div>
+		</div>
+	</div>
+
+	{% include 'layout/acf/image-cta.twig' %}
+
+	{% include 'footer.twig' with {'pullup': '120'} %}
+{% endblock %}
+

@@ -1,0 +1,36 @@
+.searchbar {
+	background: $white;
+	padding: 20px;
+	width: 575px;
+	margin: 0 auto;
+
+	@include max-screen($screen-xs-max) {
+		width: 100%;
+		background: transparent;
+	}
+
+	input {
+		height: 48px;
+	}
+
+	input.searchTerm {
+		width: 410px;
+		border: 1px solid #cccccc;
+		font-size: 12px;
+		line-height: 25px;
+		// font-weight: 700;
+		// text-transform: uppercase;
+		padding: 0 19px;
+		color: $body-font-color;
+
+		@include max-screen($screen-xs-max) {
+			width: 100%;
+			margin-bottom: 15px;
+		}
+	}
+
+	input[type=submit] {
+		border-radius: 40px;
+		width: 109px;
+	}
+}

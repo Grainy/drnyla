@@ -1,0 +1,49 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="l-page-section b-secondary-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h1>{{post.get_field('contact_header_title')}}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				{{post.get_field('contact_sub_title')}}
+
+				{% filter shortcodes %}
+
+					[gravityform id="4" ajax="true" title="false"]
+
+				{% endfilter  %}
+			</div>
+		</div>
+	</div>
+
+	<div class="container b-locations">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h3>{{post.get_field('offices_sub_title')}}</h3>
+			</div>
+			{% for location in post.get_field('contact_offices') %}
+			    <div class="col-md-4 text-center">
+			    	<img src="{{location.image.url}}" alt="">
+			    	<div class="b-locations__box {{location.theme}} js-match-height">
+			    		<h4>{{location.location}}</h4>
+			    		<p>{{location.address}}</p>
+			    		<a href="tel:{{location.phone|replace({" " : "","(" : "",")" : ""})}}" class="b-button b-locations__box--button phone"><span class="icon-phone"></span>{{location.phone}}</a>
+			    		<a href="{{location.google_map_link}}" class="b-button b-locations__box--button pin" target="_blank"><span class="icon-pin"></span>Map</a>
+			    	</div>
+			    </div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% include 'footer.twig' with {'pullup': '120'} %}
+{% endblock %}
+

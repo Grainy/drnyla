@@ -1,0 +1,15 @@
+@include b(b-secondary-slider){
+	height:279px;
+
+	@include e(slide) {
+		width: 900px;
+		max-width: 100%;
+		margin: 0 25px;
+
+		@include m(link) {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+	}
+}

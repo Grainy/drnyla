@@ -1,0 +1,17 @@
+@include b(b-single-testimonial){
+	@include e(testimonial){
+		p {
+			@include min-screen($screen-sm-min) {
+				font-size: 36px;
+				line-height: 46px;
+			}
+		}
+
+		h6 {
+			@include min-screen($screen-sm-min) {
+				font-size: 18px;
+				line-height: 22px;
+			}
+		}
+	}
+}

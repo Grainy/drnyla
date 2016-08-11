@@ -1,0 +1,32 @@
+<div class="l-page-section l-page-section--flush b-awards {{media_item.theme}}">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1 b-awards__content text-center">
+				{{media_item.content}}
+			</div>
+
+			<div class="col-md-12 b-awards__info text-center">
+				{% for info in media_item.infoboxes %}
+					<div class="b-awards__info--box">
+						<h4>{{info.value}}</h4>
+						<p>{{info.title}}</p>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="col-md-10 col-md-offset-1 b-awards__logos text-center">
+				{% for logo in media_item.logos %}
+					<div class="img-wrap">
+						<img src="{{logo.logo.url}}" alt="">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+

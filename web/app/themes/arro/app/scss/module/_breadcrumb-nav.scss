@@ -1,0 +1,25 @@
+@include b(b-breadcrumbs){
+	position: relative;
+	padding: 20px 0;
+
+	.trail-items {
+		li {
+			text-transform: uppercase;
+			font-weight: 700;
+
+			@include rem((
+				font-size: 12px,
+				line-height: 20px
+			));
+
+			&:after {
+				content: "\00bb";
+				font-weight: 700;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+}

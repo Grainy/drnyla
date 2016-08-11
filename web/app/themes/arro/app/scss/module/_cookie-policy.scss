@@ -1,0 +1,45 @@
+@include b(b-cookie-policy) {
+	display: none;
+	height: auto;
+	width: 100%;
+	position: fixed;
+	z-index: 10000;
+	top: 0;
+	left: 0;
+	background-color: #1B1727;
+
+	@include min-screen($screen-md-min) {
+		height: 62px;
+	}
+
+	p {
+		color: #f2f2f2;
+		font-size: 12px;
+		line-height: 19px;
+		margin-bottom: 0;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+
+	@include e(content) {
+		margin: 15px 0;
+
+		@include min-screen($screen-md-min) {
+			position: relative;
+			top: 50%;
+			transform: translate(0,-50%);
+			margin: 0;
+		}
+	}
+
+	@include e(button) {
+		@include min-screen($screen-md-min) {
+			position: relative;
+			top: 50%;
+			transform: translate(0,-50%);
+		}
+	}
+}

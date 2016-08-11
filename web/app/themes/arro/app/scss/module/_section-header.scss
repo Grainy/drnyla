@@ -1,0 +1,13 @@
+@include b(b-section-header){
+	position: relative;
+	z-index: 1;
+	padding: 0 0 25px;
+
+	@include min-screen($screen-sm-min) {
+		padding: 0 0 41px;
+	}
+
+	@include e(title){
+		margin: 0;
+	}
+}

@@ -1,0 +1,24 @@
+<div class="l-page-section l-page-section--flush b-testimonial-block">
+	<div class="js-control-container">
+		<div class="col-md-6 b-testimonial-block__left text-center">
+			<h2 class="js-section-header">{{media_item.title}}</h2>
+			<div class="js-testimonial-slider">
+				{% for testimonial in media_item.testimonial %}
+					{% set testimonial = TimberPost(testimonial) %}
+					<div class="b-testimonial-block__testimonial">
+						{{testimonial.content}}
+						<h6>{{testimonial.title}}</h6>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-6 b-testimonial-block__right">
+			<div class="js-testimonial-image-slider">
+				{% for testimonial in media_item.testimonial %}
+					{% set testimonial = TimberPost(testimonial) %}
+					<img src="{{testimonial.thumbnail}}" alt="">
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

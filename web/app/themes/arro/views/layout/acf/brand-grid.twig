@@ -1,0 +1,48 @@
+<a name="divisions"></a>
+
+<div class="l-page-section l-page-section--flush">
+	<div class="b-brand-grid">
+
+			<div class="row">
+				{% for item in brands | sortbyfield('order_value') %}
+					<div class="col-sm-3 b-brand-grid__module" data-link="{{item.link}}">
+						<!-- <a href="{{item.link}}" class="big-link"> -->
+							<div class="b-brand-grid__module--background" style="background-image: url({{item.category_image.url}});"></div>
+							<div class="b-brand-grid__module--content js-match-height">
+								<div class="ab-center text-center">
+									<h3>{{item.title}}</h3>
+									<div class="js-hover hide">
+										<p>{{item.description}}</p>
+
+										{% if item.link %}
+											<a href="{{item.link}}">View {{item.title}}</a>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						<!-- </a> -->
+					</div>
+
+					{% if loop.index is divisibleby(4) and not loop.last %}
+						</div>
+						<div class="row">
+					{% endif %}
+
+					{% if loop.last %}
+						<div class="l-page-section l-page-section--flush b-section-header show-on-all-phones">
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="text-center b-section-header__link">
+											<a href="/brands" class="b-section-header__link--blue">View all brands</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+
+	</div>
+</div>

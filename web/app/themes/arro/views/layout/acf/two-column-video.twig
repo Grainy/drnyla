@@ -1,0 +1,28 @@
+<div class="l-page-section l-page-section--flush {{media_item.theme}}">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+	<div class="b-two-column-video">
+		<div class="container">
+			<div class="row">
+				{% if media_item.youtube_embed_id %}
+					<div class="col-md-6 col-sm-4 {% if media_item.video_alignment == 'right' %}pull-right{% endif %} no-p-mob b-two-column-video__video">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/{{media_item.youtube_embed_id}}" frameborder="0" allowfullscreen></iframe>
+					</div>
+				{% endif %}
+
+				{% if media_item.content %}
+					<div class="col-md-6 col-sm-8">
+						{{media_item.content}}
+
+						{% if media_item.has_button %}
+							<a href="{{media_item.button_link}}" class="b-button b-button--secondary"><span>{{media_item.button_text}}</span></a>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+

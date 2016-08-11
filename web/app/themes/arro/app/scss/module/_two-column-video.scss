@@ -1,0 +1,10 @@
+@include b(b-two-column-video){
+	padding-bottom: 47px;
+
+	ul {
+		li {
+			list-style-type: disc;
+			margin-left: 20px;
+		}
+	}
+}

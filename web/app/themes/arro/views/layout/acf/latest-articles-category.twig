@@ -1,0 +1,37 @@
+<div class="l-page-section b-latest-articles {{media_item.theme}} {% if media_item.has_arrow %}has-arrow{% endif %}">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			{% if media_item.content %}
+				<div class="col-md-10 col-md-offset-1 text-center">
+					{{media_item.content}}
+				</div>
+			{% endif %}
+
+			{% for article in catPosts %}
+				<div class="col-sm-6 b-latest-articles__article">
+					{% if article.thumbnail %}
+						<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(568, 276)}}" alt=""></a>
+					{% else %}
+						<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(568, 276)}}" alt=""></a>
+					{% endif %}
+
+					<h4><a href="{{article.link}}">{{article.title}}</a></h4>
+
+					{% if article.get_field('custom_blog_intro') %}
+						<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
+					{% else %}
+					    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="row text-center">
+			<a href="/category/{{catSlug}}" class="b-button">Read all <span class="arrow">›</span></a>
+		</div>
+	</div>
+</div>

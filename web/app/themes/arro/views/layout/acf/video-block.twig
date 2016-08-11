@@ -1,0 +1,35 @@
+{% if media_item.video_type == 'library' %}
+	{% set videos = media_item.library_videos %}
+{% elseif media_item.video_type == 'global' %}
+	{% set videos = media_item.global_videos %}
+{% elseif media_item.video_type == 'social' %}
+	{% set videos = media_item.social_videos %}
+{% elseif media_item.video_type == 'story' %}
+	{% set videos = media_item.story_videos %}
+{% endif %}
+
+<div class="l-page-section l-page-section--flush b-video-block {{media_item.theme}}">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+
+	<div class="container">
+		<div class="flex-container">
+			{% for video in videos %}
+				{% set video = TimberPost(video) %}
+
+			    <div class="item text-center">
+					<div class="video-wrap">
+						<iframe src="https://www.youtube.com/embed/{{video.youtube_embed_id}}" frameborder="0" allowfullscreen></iframe>
+					</div>
+
+					<p class="title">{{video.title}}</p>
+					{{video.content}}
+			    </div>
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
+
+

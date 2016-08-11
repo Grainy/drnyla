@@ -1,0 +1,56 @@
+{% block html_head_container %}
+{% include 'html-header.twig' %}
+	{% block head %}
+	{% endblock %}
+	</head>
+{% endblock %}
+	<body class="{{body_class}}" data-template="base.twig">
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '1773131426233242',
+		      xfbml      : true,
+		      version    : 'v2.7'
+		    });
+		  };
+
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		{% if sector == 'business' %}
+			{% set theme = 'dark' %}
+			{% set checked = true %}
+		{% else %}
+		    {% set theme = '' %}
+		    {% set checked = '' %}
+		{% endif %}
+
+		{% include 'module/cookie-policy.twig' %}
+		{% include 'layout/masthead.twig' with {theme : theme} %}
+
+		{% block content %}
+			Sorry, no content
+		{% endblock %}
+
+
+		{% block footer %}
+			{{ function('wp_footer') }}
+		{% endblock %}
+
+		{% include 'module/form-overlay.twig' with {checked : checked} %}
+		{# {% include 'module/video-modal.twig' %} #}
+
+	{% if site.url == "https://arromoney.com" or site.url == "http://arromoney.com" %}
+
+	   {% include 'inc/tracking.twig' %}
+
+	{% endif %}
+
+	</body>
+</html>

@@ -1,0 +1,33 @@
+@include b(l-video-overlay){
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0, 0.5);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2001;
+	transform: translate(0%, 100%);
+
+	&.active {
+		transition: transform .5s ease;
+		transform: translate(0%);
+	}
+
+	@include e(close) {
+		position: absolute;
+		top: 40px;
+		right: 40px;
+		transform: rotate(45deg);
+
+		span {
+			color: $white;
+			font-size: 50px;
+		}
+	}
+
+	@include e(video) {
+		height: 100%;
+	}
+}

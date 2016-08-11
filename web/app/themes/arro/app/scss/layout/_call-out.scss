@@ -1,0 +1,83 @@
+@include b(b-call-out){
+	background: $white;
+	border-radius: 3px;
+
+	@include max-screen($screen-xs-max) {
+		padding: 0 15px;
+	}
+
+	> .row {
+		position: relative;
+	}
+
+	@include e(icon) {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		background-color: $brandGreen;
+		border-radius: 100%;
+		width: 110px;
+		height: 110px;
+
+		@include m(inner) {
+			color: $white;
+			font-size: 65px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	@include e(box) {
+		text-align: center;
+
+		@include min-screen($screen-sm-min) {
+			&:first-child {
+				padding-right: 90px;
+				text-align: right;
+
+				.b-call-out__box--inner {
+					padding-left: 30px;
+				}
+			}
+
+			&:nth-child(2) {
+				padding-left: 90px;
+				text-align: left;
+
+				.b-call-out__box--inner {
+					padding-right: 30px;
+				}
+			}
+		}
+
+		@include max-screen($screen-xs-max) {
+			&:first-child {
+				margin-bottom: 100px;
+			}
+		}
+
+		@include m(inner) {
+			padding: 27px 0px 32px;
+
+			h5 {
+				color: $body-font-color !important;
+				margin-bottom: 6px;
+			}
+
+			p {
+				color: $body-font-color !important;
+				font-size: 20px;
+				line-height: 28px;
+				margin: 0;
+
+				@include max-screen($screen-xs-max) {
+					font-size: 16px;
+					line-height: 24px;
+				}
+			}
+		}
+	}
+}
