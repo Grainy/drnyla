@@ -1,0 +1,38 @@
+@include b(b-faq-block){
+	padding-bottom: 59px;
+
+	@include max-screen($screen-xs-max) {
+		padding-bottom: 30px;
+	}
+
+	@include e(location) {
+		display: inline-block;
+		margin-right: 20px;
+
+		@include max-screen($screen-xs-max) {
+			display: block;
+			margin-right: 0px;
+		}
+
+		&:last-child {
+			margin-right: 0px;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		a {
+			color: $brandCream;
+			font-size: 14px;
+			line-height: 26px;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+

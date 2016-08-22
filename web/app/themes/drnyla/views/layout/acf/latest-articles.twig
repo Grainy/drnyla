@@ -1,0 +1,52 @@
+<div class="l-page-section l-page-section--grey">
+	<div class="b-latest-articles">
+		<div class="container">
+			<div class="row">
+				{% for article in posts %}
+					<div class="col-sm-4 b-latest-articles__article">
+						{% if article.thumbnail %}
+							<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
+						{% else %}
+							<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
+						{% endif %}
+
+						<h4><a href="{{article.link}}">{{article.title}}</a></h4>
+
+						{% if article.get_field('custom_blog_intro') %}
+							<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
+						{% else %}
+						    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+						{% endif %}
+
+						<div class="b-latest-articles__article--meta">
+							<span class="tags">
+								<p>Tagged under:</p>
+
+								{% for term in article.terms() %}
+								    <li class="{{term.slug}}">
+								    	<a href="{{term.link}}">{{term.name}}</a>
+								    </li>
+								{% endfor %}
+							</span>
+
+							<div>
+								<span class="date">
+									<p><strong>{{article.post_date|time_diff}}</strong></p>
+								</span>
+
+								<span class="share">
+									<li><a href="http://www.facebook.com/share.php?u={{article.link}}" target="_blank"><span class="icon-facebook"></span></a></li>
+									<li><a href="http://twitter.com/home?status={{article.link}}" target="_blank"><span class="icon-twitter"></span></a></li>
+								</span>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="row text-center">
+				<a href="/blog" class="b-button">Read all <span class="arrow">›</span></a>
+			</div>
+		</div>
+	</div>
+</div>

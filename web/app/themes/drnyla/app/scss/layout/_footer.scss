@@ -1,0 +1,107 @@
+@include b(l-footer) {
+	background-color: $white;
+
+	@include e(container) {
+		margin: 0;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		p {
+			color: $brandGold;
+			font-size: 12px;
+			font-weight: 700;
+			line-height: 15px;
+			margin: 0;
+
+			a {
+				color: inherit;
+				text-decoration: underline;
+				font-size: inherit;
+			}
+		}
+
+		a {
+			color: $brandGold;
+			font-size: 12px;
+			line-height: 15px;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		@include m(item) {
+			align-content: flex-start;
+			flex: 1;
+			text-align: center;
+			position: relative;
+		}
+
+		@include m(social) {
+			margin: 0;
+			li {
+				display: inline-block;
+				line-height: 1em;
+				margin-right: 30px;
+
+				&:last-child {
+					margin-right: 0;
+				}
+
+				a {
+					color: $brandGold;
+					font-size: 28px;
+					line-height: 1em;
+
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		@include m(nav) {
+			margin: 0;
+
+			li {
+				line-height: 1em;
+				font-size: 12px;
+				line-height: 15px;
+				display: inline-block;
+
+				a {
+					font-size: 12px;
+					line-height: 1em;
+					color: $brandGold;
+					text-transform: uppercase;
+					font-weight: 900;
+
+					&:after {
+						display: inline-block;
+						content: "|";
+						margin: 0px 5px 0 10px;
+						position: relative;
+						top: -1px;
+					}
+				}
+
+				&.current-menu-item {
+					a {
+						text-decoration: underline;
+					}
+				}
+
+				&:last-child {
+					a {
+						&:after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

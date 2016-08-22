@@ -1,0 +1,16 @@
+{% set image = post.get_field('cta_image') %}
+
+<div class="b-image-cta {% if shadow %}shadow{% endif %}">
+	<div class="container h-100">
+		<div class="row h-100">
+			<div class="col-md-8 col-centered text-center{% if padded %}padded{% endif %}">
+				<h2>{{post.get_field('cta_header')}}</h2>
+				{{post.get_field('cta_content')}}
+				<div class="btn-wrap">
+					<a href="#" class="b-button b-button--tertiary">{{post.get_field('cta_button_text')}}</a>
+					<a href="tel:08000096661" class="b-button b-button--tertiary">Call us 0800 009 6661</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

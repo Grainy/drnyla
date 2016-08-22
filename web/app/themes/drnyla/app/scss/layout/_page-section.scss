@@ -1,0 +1,68 @@
+@include b(l-page-section){
+	padding: 25px 10px;
+	background-color: inherit;
+	position: relative;
+	// overflow: hidden;
+
+	@include max-screen($screen-xs-max) {
+		padding-bottom: 0px;
+	}
+
+	&.has-arrow {
+		background-image: url("../img/logo/logo-2.svg");
+		background-repeat: no-repeat;
+
+		@include max-screen($screen-xs-min){
+			background-position: 0 125%
+		}
+	}
+
+
+	&.grey {
+		background-color: $brandGrey;
+
+		&.has-arrow {
+			background-image: url("../img/logo/logo-opaque-25.svg");
+		}
+	}
+
+	&.black {
+		background-color: $black;
+
+		h1, h2, h3, h4, h5, h6, p, a, li {
+			color: $white;
+		}
+	}
+
+	&.purple {
+		background-color: $brandCream;
+
+		h1, h2, h3, h4, h5, h6, p, a, li {
+			color: $white;
+		}
+	}
+
+	&.white {
+		background-color: $white;
+	}
+
+	@include min-screen($screen-md){
+		padding: 0 0 67px;
+	}
+
+	@include m(flush){
+		padding:0;
+	}
+
+	@include m(p10){
+		padding-top: 10px;
+	}
+
+	@include m(section-header){
+		padding: 29px 0 20px;
+	}
+
+	@include m(footer){
+		padding:32px 0 18px;
+	}
+}

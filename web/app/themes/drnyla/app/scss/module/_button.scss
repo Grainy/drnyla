@@ -1,0 +1,82 @@
+/*
+A button suitable for giving stars to someone.
+
+:hover             - Subtle hover highlight.
+.stars-given       - A highlight indicating you've already given a star.
+.stars-given:hover - Subtle hover highlight on top of stars-given styling.
+.disabled          - Dims the button to indicate it cannot be used.
+
+Styleguide 2.1.3.
+*/
+
+@include b(b-button){
+	text-align: center;
+	font-size: 14px;
+	line-height: 17px;
+	font-weight: 500;
+	display: inline-block;
+	text-decoration: none;
+	color: $white;
+	padding: 17px 30px 20px;
+	cursor: pointer;
+	background-color: $brandGold;
+	transition: transform .25s ease;
+
+	border: none;
+	font-family: $header-font-family;
+	text-transform: uppercase;
+	width: 310px;
+	height: 51px;
+	border-radius: 114px;
+
+
+	@include max-screen($screen-xs-max) {
+		margin: 0 auto;
+		font-size: 18px;
+		padding: 6px 16px 8px;
+		min-width: 100px;
+	}
+
+	@include m(secondary) {
+		position: relative;
+		background: transparent;
+		box-shadow: none;
+		padding: 0;
+		font-size: 14px;
+		line-height: 18px;
+		color: $body-font-color;
+		width: auto;
+		height: auto;
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: -5px;
+			height: 4px;
+			background: $brandGold;
+			box-shadow: inset 0 2px 2px -1px rgba(255,255,255,.3);
+			width: 100%;
+			transition: all .25s ease;
+		}
+
+		&:hover {
+			transform: none;
+
+			&:after {
+				bottom: -7px;
+			}
+		}
+	}
+
+	@include m(tertiary) {
+		background: $white;
+		color: $brandGold;
+		width: 265px;
+		display: inline-block;
+		margin-right: 20px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}

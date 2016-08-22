@@ -1,0 +1,66 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="l-page-section b-two-column-image">
+	<div class="container">
+		<div class="row">
+			<div class="b-two-column-image__content js-match-height">
+				<h2 class="text-center">CONTACT DR NYLA</h2>
+
+				<p><strong>Congratulations on taking your first steps to looking fabulous!</strong></p>
+				<p>If you are at all anxious about any treatment with Dr. Raja, this is the perfect place to get reassured.</p>
+
+				<p>Just fill out the form below to enqiure about booking an appointment, or if you just have questions about our treatments. You can also talk to us directly.</p>
+
+				{% if media_item.has_button %}
+					<a href="{{media_item.button_link}}" class="b-button"><span>{{media_item.button_text}}</span></a>
+				{% endif %}
+			</div>
+			<div class="no-p-mob b-two-column-image__image js-match-height">
+				<div id="map-canvas"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="l-page-section b-two-column-form">
+	<div class="container">
+		<div class="row">
+			<div class="b-two-column-form__form">
+				<h2>Book an appointment</h2>
+				{% filter shortcodes %}
+					[gravityform id="4" ajax="true" title="false"]
+				{% endfilter  %}
+			</div>
+			<div class="b-two-column-form__text">
+				<h2>Our address</h2>
+				<p>Wilmslow Medispa<br>
+				3 Hawthorn Lane<br>
+				Wilmslow<br>
+				Cheshire<br>
+				SK9 1AA<br>
+				Tel: 0800 009 6661</p>
+
+				<h2>Our opening times</h2>
+				<p>
+					Tuesday 10am – 8pm<br>
+					Wednesday 10am – 8pm<br>
+					Thursday 10am – 8pm<br>
+					Friday 10am – 8pm<br>
+					Saturday 10am – 4pm
+				</p>
+
+				<h2>Follow us</h2>
+				<a href="{{options.facebook}}"><span class="icon-facebook"></span> Facebook</a>
+				<a href="{{options.twitter}}"><span class="icon-twitter"></span> Twitter</a>
+				<a href="{{options.instagram}}"><span class="icon-instagram"></span> Instagram</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% include 'footer.twig' with {'pullup': '120'} %}
+{% endblock %}
+

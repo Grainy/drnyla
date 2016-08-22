@@ -1,0 +1,22 @@
+<div class="l-page-section">
+	{% if media_item.header_title %}
+		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
+	{% endif %}
+	<div class="b-two-column-text">
+		<div class="container">
+			<div class="row">
+				{% if media_item.left_column %}
+					<div class="col-sm-6">
+						{{media_item.left_column}}
+					</div>
+				{% endif %}
+
+				{% if media_item.right_column %}
+					<div class="col-sm-6">
+						{{media_item.right_column}}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

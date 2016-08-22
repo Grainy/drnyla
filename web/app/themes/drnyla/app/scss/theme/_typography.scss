@@ -1,0 +1,111 @@
+// /* Typography */
+
+h1,h2,h3,h4,h5,h6, .htag{
+	color: $header-font-color;
+	font-weight: normal;
+	text-rendering: optimizeLegibility;
+	font-family: $header-font-family;
+
+	&.dark {
+		color: $black;
+	}
+
+	a {
+		color: $header-link-color;
+		font-family: $header-font-family;
+	}
+}
+
+@include min-screen($screen-sm) {
+	h1,h2,h3,h4,h5,h6 {
+		word-wrap: break-word;
+	}
+}
+
+h1 {
+	font-size: 78px;
+	line-height: 82px;
+	font-weight: 700;
+
+	@include max-screen($screen-sm-max) {
+		font-size: 50px;
+		line-height: 64px;
+	}
+
+	@include max-screen($screen-xs-max) {
+		font-size: 30px;
+		line-height: 38px;
+	}
+
+	&.xlarge {
+		@include rem(font-size, $reallybig);
+	}
+
+	&.xxlarge {
+		@include rem(font-size, $tremendous);
+	}
+
+	&.absurd {
+		@include rem(font-size, $absurd);
+	}
+}
+
+h2 {
+	font-size: 20px;
+	line-height: 24px;
+	text-transform: uppercase;
+	margin: 0;
+	margin-bottom: 33px;
+}
+
+h3 {
+	font-size: 20px;
+	line-height: 24px;
+	margin: 0;
+	margin-bottom: 33px;
+}
+
+h4 {
+	font-size: 36px;
+	line-height: 42px;
+	font-weight: 700;
+	margin: 0;
+
+	@include max-screen($screen-xs-max) {
+		font-size: 22px;
+		line-height: 26px;
+	}
+}
+
+h5 {
+	font-size: 32px;
+	line-height: 40px;
+	margin: 0;
+	font-weight: 600;
+
+	@include max-screen($screen-xs-max) {
+		font-size: 22px;
+		line-height: 26px;
+	}
+}
+
+h6 {
+	font-family: $alt-font-family;
+	font-size: 18px;
+	line-height: 28px;
+	margin: 1em 0;
+}
+
+ol ol {
+	margin: 4px 0 5px 30px;
+}
+
+strong {
+	font-family: $header-font-family;
+}
+
+.arrow {
+	font-size: 22px;
+	position: relative;
+	left: 6px;
+}

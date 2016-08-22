@@ -1,0 +1,56 @@
+@include b(b-secondary-nav){
+	position: relative;
+	background: $black;
+
+	@include e(nav){
+		position: relative;
+		margin-top: 0;
+		margin-bottom: 0;
+		display: inline-block;
+
+		@include m(link){
+			display: inline-block;
+
+			&.current_page_item {
+				a {
+					color: $brandCream;
+				}
+			}
+
+			a {
+				padding: 23px 48px 27px 0;
+				font-weight: 700;
+				color: $white;
+				text-transform: uppercase;
+				text-decoration: none;
+				display: block;
+
+				@include rem((
+					font-size: 14px,
+					line-height: 17px
+				));
+
+				&:hover, &.active {
+					color: $brandCream;
+				}
+			}
+		}
+	}
+}
+
+@include b(b-secondary-nav-mobile){
+	position: relative;
+	padding-top: 10px;
+
+	.fancy-select {
+		.trigger {
+			border: none;
+			border-radius: 0;
+			border-bottom: 1px solid #ccc;
+
+			&:after {
+				right: 20px;
+			}
+		}
+	}
+}

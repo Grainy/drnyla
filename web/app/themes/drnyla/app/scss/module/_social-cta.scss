@@ -1,0 +1,87 @@
+@include b(b-social-cta){
+	border-top: 1px solid #DEDEDE;
+	border-bottom: 1px solid #DEDEDE;
+	background-image: none;
+	padding: 29px 0;
+
+	@include max-screen($screen-xs-max) {
+		padding: 20px 0;
+	}
+
+	@include e(content){
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: row wrap;
+
+		@include m(item){
+			max-width: 50%;
+			align-content: flex-start;
+			flex: 1;
+
+			.icon {
+				font-size: 45px;
+				margin-bottom: 0px;
+
+				@include max-screen($screen-xs-max) {
+					font-size: 30px;
+				}
+
+				a {
+					text-decoration: none;
+
+					span {
+						&.icon-twitter {
+							color: $social-twitter;
+						}
+
+						&.icon-youtube {
+							color: $social-youtube;
+						}
+
+						&.icon-linkedin {
+							color: $social-linkedin;
+						}
+
+						&.icon-facebook {
+							color: $social-fb;
+						}
+
+						&.icon-googleplus {
+							color: $social-gplus;
+						}
+					}
+				}
+			}
+
+			p {
+				font-size: 24px;
+				line-height: 28px;
+
+				@include max-screen($screen-xs-max){
+					float: left;
+				}
+
+				a {
+					color: $brandCream;
+					font-size: 24px;
+					line-height: 28px;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+
+					@include max-screen($screen-xs-max){
+						font-size: 18px;
+						line-height: 56px;
+					}
+				}
+			}
+		}
+	}
+
+	&.grey {
+		background-color: #E6E6E6;
+	}
+}

@@ -1,0 +1,37 @@
+<footer>
+	<div class="l-footer">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-sm-12">
+					<div class="l-footer__container">
+						<div class="l-footer__container--item text-left">
+							<p>©2016 DR NYLA | WILMSLOW MEDISPA</p>
+						</div>
+						<div class="l-footer__container--item text-center">
+							<ul class="l-footer__container--social">
+								<li>
+									<a href="{{options.facebook}}" class="icon-facebook" target="_blank"></a>
+								</li>
+								<li>
+									<a href="{{options.twitter}}" class="icon-twitter" target="_blank"></a>
+								</li>
+								<li>
+									<a href="{{options.instagram}}" class="icon-instagram" target="_blank"></a>
+								</li>
+							</ul>
+						</div>
+						<div class="l-footer__container--item text-right">
+							<ul class="l-footer__container--nav">
+								{% for item in footerLegalNav.get_items %}
+									<li class="l-footer__nav--item {{item.classes | join(' ')}}">
+										<a href="{{item.get_link}}">{{item.title}}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

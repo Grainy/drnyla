@@ -1,0 +1,135 @@
+{% set sector = post.get_field('sidebar_sector_type') %}
+
+{% if sector == 'business' %}
+	{% set theme = 'dark' %}
+{% else %}
+    {% set theme = '' %}
+{% endif %}
+
+{% extends "base.twig"%}
+{% block content %}
+	{% include 'layout/acf/hero.twig' with {'postType': 'page'} %}
+
+	<div class="l-sectors {{theme}}">
+		<div class="container">
+			<div class="l-page-section">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1 text-center">
+						{{post.get_field('single_column_text_content')}}
+					</div>
+				</div>
+			</div>
+
+			<div class="l-page-section">
+				<div class="b-section-header">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 text-center">
+								<h2 class="b-section-header__title js-section-header">{{post.get_field('icon_header_title')}}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="b-icon-ctas">
+					<div class="container">
+						<div class="row">
+							<div class="b-icon-ctas__container">
+								{% for cta in post.get_field('icons') %}
+								    <div class="text-center b-icon-ctas__single">
+								    	<div class="b-icon-ctas__icon" style="background-image: url('{{cta.icon.url}}')"></div>
+
+								    	<div class="b-icon-ctas__content">
+								    		<p>{{cta.title}}</p>
+								    	</div>
+								    </div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% include 'layout/acf/call-out.twig' %}
+
+			{% include 'layout/acf/image-cta.twig' with {padded : true, shadow: true} %}
+
+			{% include 'layout/acf/how.twig' %}
+		</div>
+	</div>
+
+	<div class="l-page-section b-features">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h2 class="{{theme}}">{{post.get_field('account_features_header')}}</h2>
+					<p><strong>{{post.get_field('account_features_intro_content')}}</strong></p>
+				</div>
+
+				<div class="col-md-9 col-centered">
+					<ul>
+						{% for feature in post.get_field('account_features') %}
+						    <li>{{feature.feature}}</li>
+
+						    {% if loop.index == 4 %}
+								</ul>
+								<ul>
+						    {% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="l-page-section b-latest-articles">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h2 class="{{theme}}">Straightforward stuff</h2>
+					{{post.get_field('blog_intro')}}
+				</div>
+
+				{% for article in catPosts %}
+					<div class="col-sm-6 b-latest-articles__article">
+						{% if article.thumbnail %}
+							<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(568, 276)}}" alt=""></a>
+						{% else %}
+							<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(568, 276)}}" alt=""></a>
+						{% endif %}
+
+						<div class="b-latest-articles__article--container js-match-height">
+							<h5><a href="{{article.link}}">{{article.title}}</a></h5>
+
+							<div class="b-latest-articles__article--meta">
+								<span class="tags">
+									{% for term in article.terms() %}
+									    <li class="{{term.slug}}">
+									    	<a href="{{term.link}}">{{term.name}}</a>
+									    </li>
+									{% endfor %}
+									<span class="date">
+										<p><strong>{{article.post_date|time_diff}}</strong></p>
+									</span>
+								</span>
+							</div>
+
+							{% if article.get_field('custom_blog_intro') %}
+								<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
+							{% else %}
+							    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="row text-center">
+				<a href="/blog/category/{{catSlug}}" class="b-button b-button--secondary">View all our helpful articles</a>
+			</div>
+		</div>
+	</div>
+
+	{% include 'footer.twig' with {'pullup': '120'} %}
+{% endblock %}
+

@@ -1,0 +1,82 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% if postType == 'business' %}
+	{% set introTitle = options.business_title %}
+	{% set introContent = options.business_content %}
+{% elseif postType == 'personal' %}
+	{% set introTitle = options.personal_title %}
+	{% set introContent = options.personal_content %}
+{% else %}
+	{% set introTitle = options.blog_title %}
+	{% set introContent = options.blog_content %}
+{% endif %}
+
+<div class="l-page-section l-archive">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center intro">
+				<h2>{{introTitle}}</h2>
+				{{introContent}}
+			</div>
+
+			{% for article in treatments %}
+				<div class="col-lg-4 col-sm-6 b-latest-articles__article">
+					{% if article.thumbnail %}
+						<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
+					{% else %}
+						<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
+					{% endif %}
+
+					<div class="b-latest-articles__article--container js-match-height">
+						<h5><a href="{{article.link}}">{{article.title}}</a></h5>
+
+						<div class="b-latest-articles__article--meta">
+							<span class="tags">
+								{% for term in article.terms() %}
+								    <li class="{{term.slug}}">
+								    	<a href="{{term.link}}">{{term.name}}</a>
+								    </li>
+								{% endfor %}
+
+								<span class="date">
+									<p>{{article.post_date|time_diff}}</p>
+								</span>
+							</span>
+						</div>
+
+						{% if article.get_field('custom_blog_intro') %}
+							<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
+						{% else %}
+						    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+						{% endif %}
+
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="pagination">
+			<div class="tool-pagination text-left">
+				<div class="col-xs-6 p0">
+					{% if pagination.prev %}
+					    <a href="{{pagination.prev.link}}" class="prev b-button b-button--secondary {{pagination.prev.link|length ? '' : 'invisible'}}">Previous</a>
+					{% endif %}
+				</div>
+
+
+				<div class="col-xs-6 p0 text-right">
+				    {% if pagination.next %}
+				        <a href="{{pagination.next.link}}" class="next b-button b-button--secondary {{pagination.next.link|length ? '' : 'invisible'}}">Next</a>
+				    {% endif %}
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include 'footer.twig' %}
+<pre>TEst</pre>
+{% endblock %}
+
+
