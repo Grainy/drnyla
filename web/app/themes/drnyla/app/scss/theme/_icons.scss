@@ -13,6 +13,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-caret-down {
+  &:before {
+    content: $icon-caret-down;
+  }
+}
 .icon-sign-up {
   &:before {
     content: $icon-sign-up;

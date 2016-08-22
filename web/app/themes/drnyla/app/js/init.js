@@ -20,4 +20,8 @@ jQuery(document).ready(function($) {
 	if ($('[data-video-url]').length > 0) {
 		videoOverlay.init();
 	}
+
+	if ($('.l-archive-conditions__condition').length > 0) {
+		faqs.init();
+	}
 });

@@ -2,81 +2,43 @@
 
 {% block content %}
 
-{% if postType == 'business' %}
-	{% set introTitle = options.business_title %}
-	{% set introContent = options.business_content %}
-{% elseif postType == 'personal' %}
-	{% set introTitle = options.personal_title %}
-	{% set introContent = options.personal_content %}
-{% else %}
-	{% set introTitle = options.blog_title %}
-	{% set introContent = options.blog_content %}
-{% endif %}
-
-<div class="l-page-section l-archive">
+<div class="l-page-section l-archive-conditions">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2 text-center intro">
-				<h2>{{introTitle}}</h2>
-				{{introContent}}
+			<div class="col-md-3 l-archive-conditions__sticky">
+				<h2>Conditions</h2>
+
+				<p>Click on the condition to reveal the recommended treatment and follow the link to the page to find out more about that treatment.</p>
 			</div>
-
-			{% for article in conditions %}
-				<div class="col-lg-4 col-sm-6 b-latest-articles__article">
-					{% if article.thumbnail %}
-						<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
-					{% else %}
-						<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
-					{% endif %}
-
-					<div class="b-latest-articles__article--container js-match-height">
-						<h5><a href="{{article.link}}">{{article.title}}</a></h5>
-
-						<div class="b-latest-articles__article--meta">
-							<span class="tags">
-								{% for term in article.terms() %}
-								    <li class="{{term.slug}}">
-								    	<a href="{{term.link}}">{{term.name}}</a>
-								    </li>
+			<div class="col-md-9">
+				{% for article in conditions %}
+					<div class="l-archive-conditions__condition">
+						<h3>{{article.title}} <span class="icon-caret-down"></span></h3>
+						
+						<div class="l-archive-conditions__condition--content">
+							{{article.content}}
+									
+							<ul>
+								{% for term in article.get_field('available_treatments') %}
+									{% set term = TimberPost(term) %}
+									<li class="{{term.slug}}">
+										<a href="{{term.link}}">{{term.name}}</a>
+									</li>
 								{% endfor %}
-
-								<span class="date">
-									<p>{{article.post_date|time_diff}}</p>
-								</span>
-							</span>
+							</ul>
 						</div>
-
-						{% if article.get_field('custom_blog_intro') %}
-							<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
-						{% else %}
-						    <p class="excerpt">{{article.content|excerpt(20)}}</p>
-						{% endif %}
-
 					</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
-		</div>
-		<div class="pagination">
-			<div class="tool-pagination text-left">
-				<div class="col-xs-6 p0">
-					{% if pagination.prev %}
-					    <a href="{{pagination.prev.link}}" class="prev b-button b-button--secondary {{pagination.prev.link|length ? '' : 'invisible'}}">Previous</a>
-					{% endif %}
-				</div>
-
-
-				<div class="col-xs-6 p0 text-right">
-				    {% if pagination.next %}
-				        <a href="{{pagination.next.link}}" class="next b-button b-button--secondary {{pagination.next.link|length ? '' : 'invisible'}}">Next</a>
-				    {% endif %}
-			    </div>
 			</div>
 		</div>
 	</div>
 </div>
 
+{% include 'layout/acf/instagram-block.twig' %}
+
 {% include 'footer.twig' %}
-<pre>TEst</pre>
+
 {% endblock %}
 
 

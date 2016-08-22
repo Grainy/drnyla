@@ -1,0 +1,61 @@
+@include b(l-archive-conditions) {
+	@include e(sticky) {
+		h2 {
+			letter-spacing: 3px;
+			border-bottom: 1px solid #dddddd;
+			margin-bottom: 10px;
+			padding-bottom: 15px;
+		}
+	}
+
+	@include e(condition) {
+		margin-bottom: 40px;
+		cursor: pointer;
+
+		h3 {
+			border-bottom: 1px solid #dddddd;
+			margin-bottom: 10px;
+			padding-bottom: 15px;
+			font-size: 22px;
+			position: relative;
+
+			span {
+				transition: transform .5s ease;
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translate(0, -50%);
+				font-size: 13px;
+			}
+
+			&.active {
+				span {
+					transform: translate(0, -50%) rotate(180deg);
+				}
+			}
+		}
+
+		@include m(content) {
+			display: none;
+
+			ul {
+				li {
+					display: inline-block;
+					margin-right: 40px;
+
+					a {
+						color: $brandGold;
+						text-decoration: none;
+						font-weight: 600;
+
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+

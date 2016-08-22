@@ -107,6 +107,7 @@ function cpt_testimonials() {
 add_action( 'init', 'cpt_testimonials', 0 );
 
 function cpt_conditions() {
+
 	$labels = array(
 		'name'                  => _x( 'Conditions', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'Condition', 'Post Type Singular Name', 'text_domain' ),
@@ -122,24 +123,24 @@ function cpt_conditions() {
 		'update_item'           => __( 'Update Condition', 'text_domain' ),
 		'view_item'             => __( 'View Condition', 'text_domain' ),
 		'search_items'          => __( 'Search Conditions', 'text_domain' ),
-		'not_found'             => __( 'No conditions found', 'text_domain' ),
-		'not_found_in_trash'    => __( 'No conditions found in Trash', 'text_domain' ),
+		'not_found'             => __( 'No Conditions found', 'text_domain' ),
+		'not_found_in_trash'    => __( 'No Conditions found in Trash', 'text_domain' ),
 		'featured_image'        => __( 'Featured Image', 'text_domain' ),
 		'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
 		'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
 		'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
-		'insert_into_item'      => __( 'Insert into condition', 'text_domain' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this condition', 'text_domain' ),
+		'insert_into_item'      => __( 'Insert into Condition', 'text_domain' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this Condition', 'text_domain' ),
 		'items_list'            => __( 'Conditions list', 'text_domain' ),
 		'items_list_navigation' => __( 'Conditions list navigation', 'text_domain' ),
-		'filter_items_list'     => __( 'Filter conditions list', 'text_domain' ),
+		'filter_items_list'     => __( 'Filter Conditions list', 'text_domain' ),
 	);
 	$args = array(
 		'label'                 => __( 'Condition', 'text_domain' ),
-		'description'           => __( 'Conditions Organiser', 'text_domain' ),
+		'description'           => __( 'm-hance Conditions Organiser', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail' ),
-		'taxonomies'            => array( 'sector' ),
+		'supports' 				=> array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+		'taxonomies'            => array( '' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -148,9 +149,10 @@ function cpt_conditions() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive' 			=> false,
-		'exclude_from_search'   => true,
-		'publicly_queryable'    => false,
+		'has_archive' 			=> 'conditions',
+		'rewrite' 				=> array( 'slug' => 'conditions','with_front' => FALSE),
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 	);
 
@@ -158,6 +160,7 @@ function cpt_conditions() {
 
 }
 add_action( 'init', 'cpt_conditions', 0 );
+
 
 function cpt_treatments() {
 
@@ -684,7 +687,7 @@ function json_api_encode_acf($post) {
 
     $acf   = get_fields($post['ID']);
 
-    $category_image = wp_get_post_terms( $post['ID'], 'resources_category' );
+    $category_image = wp_get_post_terms( $post['ID'], 'category' );
     $category_image = $category_image[0];
     $category_image = get_field('category_image', $category_image);
     $category_image = $category_image['url'];
@@ -765,3 +768,26 @@ function ajax_handle_request() {
 }
 
 add_filter( 'gform_confirmation_anchor', '__return_false' );
+
+
+function remove_parent_classes($class)
+{
+  // check for current page classes, return false if they exist.
+	return ($class == 'current_page_item' || $class == 'current_page_parent' || $class == 'current_page_ancestor'  || $class == 'current-menu-item') ? FALSE : TRUE;
+}
+
+function is_blog() {
+	global $post;
+	$posttype = get_post_type( $post );
+	return ( ( $posttype == 'post' ) && ( is_home() || is_single() || is_archive() || is_category() || is_tag() || is_author() ) ) ? true : false;
+}
+
+function fix_blog_link_on_cpt( $classes, $item, $args ) {
+	if( !is_blog() ) {
+		$blog_page_id = intval( get_option('page_for_posts') );
+		if( $blog_page_id != 0 && $item->object_id == $blog_page_id )
+			unset($classes[array_search('current_page_parent', $classes)]);
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'fix_blog_link_on_cpt', 10, 3 );

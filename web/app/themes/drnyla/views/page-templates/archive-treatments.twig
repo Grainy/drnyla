@@ -2,25 +2,9 @@
 
 {% block content %}
 
-{% if postType == 'business' %}
-	{% set introTitle = options.business_title %}
-	{% set introContent = options.business_content %}
-{% elseif postType == 'personal' %}
-	{% set introTitle = options.personal_title %}
-	{% set introContent = options.personal_content %}
-{% else %}
-	{% set introTitle = options.blog_title %}
-	{% set introContent = options.blog_content %}
-{% endif %}
-
 <div class="l-page-section l-archive">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2 text-center intro">
-				<h2>{{introTitle}}</h2>
-				{{introContent}}
-			</div>
-
 			{% for article in treatments %}
 				<div class="col-lg-4 col-sm-6 b-latest-articles__article">
 					{% if article.thumbnail %}
@@ -39,10 +23,6 @@
 								    	<a href="{{term.link}}">{{term.name}}</a>
 								    </li>
 								{% endfor %}
-
-								<span class="date">
-									<p>{{article.post_date|time_diff}}</p>
-								</span>
 							</span>
 						</div>
 
@@ -76,7 +56,6 @@
 </div>
 
 {% include 'footer.twig' %}
-<pre>TEst</pre>
 {% endblock %}
 
 

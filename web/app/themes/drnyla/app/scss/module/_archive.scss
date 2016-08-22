@@ -1,6 +1,4 @@
 @include b(l-archive) {
-	background-color: #F5F5F5;
-
 	@include max-screen($screen-xs-max) {
 		padding-top: 20px;
 	}

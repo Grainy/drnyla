@@ -6,26 +6,15 @@ var faqs = (function($) {
 	};
 
 	var _bind = function() {
-		$('.faq section > .title').on('click', function(e) {
-			if ($(this).siblings('.qanda').is(':visible')) {
-				$(this).removeClass('hidePlus');
-				$(this).siblings('.qanda').slideUp();
-			} else {
-				$('.qanda').slideUp();
-				$('.title').removeClass('hidePlus');
-				$(this).addClass('hidePlus');
-				$(this).siblings('.qanda').slideDown();
-			}
-		});
-
-		$('.question').on('click', function(e) {
-			if ($(this).siblings('.answer').is(':visible')) {
+		$('.l-archive-conditions__condition h3').on('click', function(e) {
+			if ($(this).siblings('.l-archive-conditions__condition--content').is(':visible')) {
 				$(this).removeClass('active');
-				$(this).siblings('.answer').slideUp();
+				$(this).siblings('.l-archive-conditions__condition--content').slideUp();
 			} else {
-				$('.answer').slideUp();
-				$('.question').removeClass('active');
-				$(this).addClass('active').siblings('.answer').slideDown();
+				$('.l-archive-conditions__condition h3').removeClass('active');
+				$('.l-archive-conditions__condition--content').slideUp();
+				$(this).addClass('active');
+				$(this).siblings('.l-archive-conditions__condition--content').slideDown();
 			}
 		});
 	};
@@ -35,5 +24,3 @@ var faqs = (function($) {
 	};
 
 })(jQuery);
-
-faqs.init();
