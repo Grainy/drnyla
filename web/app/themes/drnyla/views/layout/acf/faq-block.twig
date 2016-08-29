@@ -1,34 +1,19 @@
-<div class="l-page-section l-page-section--flush {{media_item.theme}}">
-	{% if media_item.header_title %}
-		{% include 'layout/acf/section-header.twig' with {'color': media_item.theme} %}
-	{% endif %}
-
-	<div class="b-faq-block">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<h4>{{media_item.title}}</h4>
-					<p>{{media_item.content}}</p>
-
-					{% for faq in media_item.q_and_a %}
-					    <h5>{{faq.question}}</h5>
-					    {{faq.answer}}
-					{% endfor %}
-
-					<a href="{{media_item.button_link}}" class="b-button">{{media_item.button_text}}</a>
-				</div>
-				<div class="col-sm-6">
-					<h4>{{media_item.right_title}}</h4>
-					<img src="{{media_item.image.url}}" alt="">
-					<p>{{media_item.right_content}}</p>
-
-					{% for location in media_item.locations %}
-					    <div class="b-faq-block__location">
-					    	<h5>{{location.name}}</h5>
-					    	<a href="tel:{{location.number|replace({" " : "","(" : "",")" : ""})}}">{{location.number}}</a>
-					    </div>
-					{% endfor %}
-				</div>
+<div class="l-page-section l-page-section--flush l-archive-conditions b-faq-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 l-archive-conditions__sticky">
+				<h2>{{media_item.header_title}}</h2>
+			</div>
+			<div class="col-md-9">
+				{% for item in media_item.q_and_a %}
+					<div class="l-archive-conditions__condition">
+						<h3>{{item.question}} <span class="icon-caret-down"></span></h3>
+						
+						<div class="l-archive-conditions__condition--content">
+							{{item.answer}}
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>

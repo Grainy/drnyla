@@ -18,7 +18,12 @@ jQuery(document).ready(function($) {
 	}
 
 	if ($('[data-video-url]').length > 0) {
-		videoOverlay.init();
+		// videoOverlay.init();
+		vidModal.init();
+
+		if(jQuery('.js-wistia-hero').length){
+		    vidModal.setupWistiaVidz();
+		}
 	}
 
 	if ($('.l-archive-conditions__condition').length > 0) {

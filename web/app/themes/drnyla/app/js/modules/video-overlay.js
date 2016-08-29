@@ -1,34 +1,83 @@
-var videoOverlay = (function($) {
-	var self = this;
+var vidModal = (function($) {
+    var $vidModal = $("#vid-modal");
 
-	var init = function() {
-		_bind();
-	};
+    function init() {
+        _bind();
+    }
 
-	var _playVideo = function(id) {
-		$('.l-video-overlay__video').attr('src','https://www.youtube.com/embed/'+id+'?autoplay=1');
-	};
+    var setupWistiaVidz = function(){
+        $('.js-wistia-hero').each(function(e) {
 
-	var _bind = function() {
-		$('[data-video-url]').on('click', function(event) {
-			event.preventDefault();
-			var thisID = $(this).data('video-url');
+            var wistiaID =  $(this).data('wistia-id'),
+                videoFoamSetting =  $(this).data('video-foam');
 
-			$('.l-video-overlay').addClass('active');
-			$('body').addClass('disabled');
+            wistiaEmbed = Wistia.embed(wistiaID, {
+                videoFoam: videoFoamSetting,
+                autoPlay: true,
+                controlsVisibleOnLoad: true,
+                volumeControl: false,
+                playbar: false,
+                fullscreenButton: false,
+                smallPlayButton: false,
+                container: "wistia_hero_" + wistiaID,
+                volume: 0,
+                endVideoBehavior: "loop"
+            });
+        });
 
-			_playVideo(thisID);
-		});
+    };
 
-		$('body').on('click', '.js-video-close', function() {
-			$('.l-video-overlay__video').attr('src','');
-			$('.l-video-overlay').removeClass('active');
-			$('body').removeClass('disabled');
-		});
-	};
+    var revealVideoModalHandler = function(el){
+        var videoSrc = $(el).attr('href');
+        var wistiaID = $(el).data('wistia-id');
+        var modalHTML = '<div id="wistia_' + wistiaID + '"' + ' class="wistia_embed">&nbsp;</div>';
 
-	return {
-		init: init
-	};
+        $('#vid-modal').addClass('animated');
+        $('#vid-modal').find('.js-wistia-embed').html(modalHTML);
 
-})(jQuery);
+        wistiaEmbed = Wistia.embed(wistiaID, {
+            autoPlay: true,
+            controlsVisibleOnLoad: true,
+            volumeControl: false,
+            playbar: true,
+            fullscreenButton: false,
+            smallPlayButton: true
+        });
+
+        //close the video modal when play finishes
+        wistiaEmbed.bind("end", function () {
+
+            $('#vid-modal').removeClass('animated');
+            setTimeout(function(){
+                 $('#vid-modal').find('.js-wistia-embed').html("");
+            }, 200);
+        });
+
+        return false;
+    };
+
+    var _bind = function() {
+        $('.js-reveal-video-modal').each(function(){
+            $(this).on("click", function(e) {
+                var el = $(this);
+                revealVideoModalHandler(el);
+            });
+        });
+
+        $("#js-close-vid-modal").click(function(e) {
+            //reset the video
+            $('#vid-modal').removeClass('animated');
+            setTimeout(function(){
+                 $('#vid-modal').find('.js-wistia-embed').html("");
+            }, 200);
+
+            e.preventDefault();
+        });
+    };
+
+    return {
+        init: init,
+        revealVideoModalHandler: revealVideoModalHandler,
+        setupWistiaVidz: setupWistiaVidz
+    };
+}(jQuery));

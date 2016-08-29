@@ -1,0 +1,30 @@
+@include b(b-before-and-after){
+	padding-top: 33px;
+
+	&:after {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 1px;
+		background: #F0E9DA;
+		margin-top: 26px;
+	}
+
+	&:last-child {
+		padding-bottom: 33px;
+
+		&:after {
+			display: none;
+		}
+	}
+
+	@include e(content){
+
+	}
+
+	@include e(images){
+		@include m(image){
+
+		}
+	}
+}

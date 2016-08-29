@@ -42,6 +42,6 @@ $args = array(
 	'order'				=> 'ASC'
 );
 
-$context['conditions'] = Timber::get_posts($args);
+$context['testimonials'] = Timber::get_posts($args);
 
 Timber::render( $templates, $context );

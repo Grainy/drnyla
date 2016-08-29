@@ -10,6 +10,7 @@
 
 	@include max-screen($screen-xs-max) {
 		height: 470px;
+		margin-top: 109px;
 	}
 
 	.apply-tint {
@@ -61,14 +62,18 @@
 			height: 106px;
 			background: url("../img/icon/icon-play.png") no-repeat;
 			@include image-2x("../img/icon/icon-play@2x.png", contain);
+			
+			@include max-screen($screen-sm-max) {
+				width: 82px;
+				height: 82px;
+			}
 		}
 	}
 
 	@include e(text) {
 		h1 {
 			color: $white;
-			margin-bottom: 50px;
-			margin-top: 0;
+			margin: 0;
 		}
 
 		p {
@@ -100,10 +105,10 @@
 	}
 }
 
-.archive, .blog {
+.archive, .blog, .single {
 	.l-hero {
 		min-height: 25vh;
-		max-height: 500px;
+		max-height: 450px;
 
 		@include max-screen($screen-xs-max) {
 			max-height: 280px;

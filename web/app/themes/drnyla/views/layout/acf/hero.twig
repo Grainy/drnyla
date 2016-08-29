@@ -29,6 +29,23 @@
 	</div>
 </div>
 
+{% elseif postType == 'treatment' %}
+	{% if post.get_field('single_banner_image') %}
+		{% set bgImg = post.get_field('single_banner_image') %}
+	{% else %}
+		{% set bgImg = options.default_single_post_hero %}
+	{% endif %}
+	
+	<div class="l-page-section l-page-section--flush">
+		<div class="l-hero ">
+			<div class="h-100">
+				<ul class="slides h-100">
+					<li class="l-hero__slide h-100 {% if post.get_field('has_overlay') %}apply-tint{% endif %}" style="background-image:url('{{bgImg}}')">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 {% else %}
 
 <div class="l-page-section l-page-section--flush">
@@ -40,7 +57,7 @@
 						<div id="wistia_hero_{{slide.wistia_video_id}}" class="js-wistia-hero wistia_embed l-hero__video" data-wistia-id="{{slide.wistia_video_id}}" data-video-foam="false">&nbsp;</div>
 
 						<div class="ab-center text-center l-hero__slide {% if post.get_field('apply_tint') %}apply-tint{% endif %}">
-							<span class="ab-center play-button"></span>
+							<span class="ab-center play-button hero-button--play js-reveal-video-modal" data-wistia-id="{{slide.wistia_video_main_id}}"></span>
 						</div>
 					{% else %}
 
@@ -50,6 +67,11 @@
 								<img src="{{slide.overlay_image.url}}" alt="{{slide.overlay_image.alt}}">
 							</div>
 						{% else %}
+							{% if slide.has_video %}
+								<div class="ab-center text-center l-hero__slide {% if post.get_field('apply_tint') %}apply-tint{% endif %}">
+									<span class="ab-center play-button hero-button--play js-reveal-video-modal" data-wistia-id="{{slide.wistia_video_main_id}}"></span>
+								</div>
+							{% endif %}
 							{% if slide.title %}
 								<div class="ab-center text-center">
 									<div class="l-hero__text col-centered text-center">

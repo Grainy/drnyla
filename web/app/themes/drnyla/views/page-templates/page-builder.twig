@@ -120,6 +120,10 @@
 
 			{% include 'layout/acf/instagram-block.twig' %}
 
+		{% elseif media_item.acf_fc_layout == 'before_and_after' %}
+
+			{% include 'layout/acf/before-and-after.twig' %}
+
 		{% endif %}
 
 		{% if media_item.acf_fc_layout == 'hero' %}

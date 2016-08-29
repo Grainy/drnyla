@@ -1,12 +1,14 @@
 @include b(l-footer) {
-	background-color: $white;
+	background-color: $brandCream;
 
 	@include e(container) {
-		margin: 0;
-		height: 60px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@include min-screen($screen-sm-min) {
+			margin: 0;
+			height: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
 		p {
 			color: $brandGold;
@@ -34,14 +36,29 @@
 		}
 
 		@include m(item) {
-			align-content: flex-start;
-			flex: 1;
-			text-align: center;
-			position: relative;
+			@include min-screen($screen-sm-min) {
+				align-content: flex-start;
+				flex: 1;
+				text-align: center;
+				position: relative;
+			}
+
+			@include max-screen($screen-xs-max) {
+				text-align: center !important;
+
+				p {
+					margin-top: 20px;
+				}
+			}
 		}
 
 		@include m(social) {
 			margin: 0;
+
+			@include max-screen($screen-xs-max) {
+				margin-top: 20px;
+			}
+
 			li {
 				display: inline-block;
 				line-height: 1em;
@@ -65,6 +82,10 @@
 
 		@include m(nav) {
 			margin: 0;
+
+			@include max-screen($screen-xs-max) {
+				margin: 15px 0 20px;
+			}
 
 			li {
 				line-height: 1em;

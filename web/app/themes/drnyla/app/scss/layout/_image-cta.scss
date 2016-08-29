@@ -5,7 +5,7 @@
 	padding: 66px 0 80px;
 
 	@include max-screen($screen-xs-max) {
-		height: 393px;
+		padding: 16px 0px;
 	}
 
 	h2, p {
@@ -23,6 +23,15 @@
 	p {
 		font-size: 22px;
 		line-height: 34px;
+	}
+
+	@include max-screen($screen-xs-max) {
+		.b-button--tertiary {
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 20px;
+			padding-top: 15px;
+		}
 	}
 
 	.btn-wrap {

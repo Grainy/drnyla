@@ -1,12 +1,12 @@
 .burger-container {
 	position: absolute;
 	top: 50%;
-	right: 20px;
+	left: 20px;
 	transform: translate(0, -50%);
 
 	width: 40px;
 	height: 40px;
-	background: $brandCream;
+	background: transparent;
 
 	.inner {
 		position: relative;
@@ -16,7 +16,7 @@
 	}
 
 	.burger-icon {
-		@include burger(26px, 4px, 5px, $white, 0, .5s);
+		@include burger(26px, 4px, 5px, $brandGold, 0, .5s);
 		margin-top: 0;
 		margin-bottom: 0;
 
@@ -53,6 +53,34 @@
 
 	&.cookie-active {
 		top: 62px;
+	}
+
+	@include e(phone) {
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		transform: translate(0, -50%);
+
+		width: 40px;
+		height: 40px;
+		background: $brandGold;
+
+		a {
+			position: relative;
+			top: 11px;
+			left: 11px;
+			color: $white;
+			font-size: 20px;
+			text-decoration: none;
+		}
+	}
+
+	@include e(logo) {
+		width: 119px;
+		height: 77px;
+		background: url("../img/logo/logo.png") no-repeat;
+		@include image-2x("../img/logo/logo@2x.png", contain);
+		background-position: center center;
 	}
 
 	@include e(container) {
@@ -152,43 +180,153 @@
 				}
 			}
 		}
+		
+		@include m(mobile-container) {
+			position: fixed;
+			z-index: 2002;
+			width: 100%;
+			right: left;
+			transform: translate(-110%);
+			height: 100%;
+			transition: transform .25s ease;
+			top: 0;
+			bottom:0;
+			overflow-y:scroll;
+			overflow-x:hidden;
+
+			&.menu-active {
+				transform: translate(0%);
+			}
+		}
 
 		@include m(mobile) {
-			position: fixed;
-			width: 100%;
-			top: 70px;
-			z-index: 2002;
+			background-color: $white;
+			width: 95%;
+			height: 100%;
+			box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.25);
+			border-left: 1px solid #DDDDDD;
+			position: absolute;
+			left: 0;
 
-			@include min-screen($screen-sm-min){
-				top: 125px;
+			@include screen($screen-sm-min, $screen-sm-max) {
+				width: 50%;
+			}
+		}
+
+		@include m(mobile-header) {
+
+			float: left;
+			width: 100%;
+			padding: 31px 25px;
+			height: 90px;
+			border-bottom: 1px solid #DDDDDD;
+			position: relative;
+
+			h6 {
+				float: left;
+
+				a {
+					font-size: 14px;
+					line-height: 28px;
+					margin: 0;
+					font-weight: 700;
+					color: $brandGreen;
+					text-decoration: none;
+				}
 			}
 		}
 
 		@include m(mobile-primary-items) {
 			margin: 0;
 
-			.b-button {
-				display: none;
-			}
-
 			li {
-				background: rgba($brandCream, .94);
-				border-top: 1px solid #171421;
+				clear: both;
+				border-bottom: 1px solid #DDDDDD;
+				list-style-type: none;
+				position: relative;
 
-				&:last-child {
-					border-bottom: 1px solid #171421;
+				&.logo-replacement {
+					display: none;
+				}
+
+				&:first-child {
+					a {
+						padding: 17px 25px;
+					}
+				}
+
+				&.highlighted {
+					background-color: $brandGold;
+
+					a {
+						color: $white;
+					}
+				}
+
+				&.menu-item-has-children {
+					&:after {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 50%;
+						right: 22px;
+						width: 0;
+						height: 0;
+						border-style: solid;
+						border-width: 5px 0 5px 8px;
+						border-color: transparent transparent transparent #cccccc;
+						transform: translate(0,-50%);
+					}
 				}
 
 				a {
-					font-family: $header-font-family;
-					color: $white;
+					font-size: 14px;
+					line-height: 24px;
+					text-transform: uppercase;
+					color: $navbar-link-color;
 					text-decoration: none;
-					font-size: 18px;
-					line-height: 28px;
 					display: block;
-					width: 100%;
-					height: 100%;
+					padding: 17px 25px;
+					font-weight: 700;
 				}
+			}
+		}
+
+		@include m(mobile-footer-items) {
+			padding: 10px 25px;
+			margin: 0;
+
+			li {
+				clear: both;
+				list-style-type: none;
+
+				a {
+					font-size: 14px;
+					line-height: 24px;
+					text-transform: uppercase;
+					color: $navbar-link-color;
+					text-decoration: none;
+					display: block;
+					padding: 5px 0;
+					font-weight: 700;
+				}
+			}
+		}
+
+		@include m(mobile-subnav) {
+			position: absolute;
+			background-color: $white;
+			width: 95%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			transform: translate(110%);
+			transition: transform .25s ease;
+			box-shadow: -2px 0px 3px 0px rgba(0,0,0,0.25);
+			z-index: 1;
+
+			&.menu-active {
+				transform: translate(0%);
 			}
 		}
 	}
@@ -247,6 +385,10 @@
 
 	& + .l-page-section:not(.l-page-section--flush){
 		padding-top: 159px;
+
+		@include max-screen($screen-xs-max) {
+			padding-top: 79px;
+		}
 	}
 }
 

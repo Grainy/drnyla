@@ -56,6 +56,10 @@ h2 {
 	text-transform: uppercase;
 	margin: 0;
 	margin-bottom: 33px;
+
+	@include max-screen($screen-xs-max) {
+		margin-top: 33px;
+	}
 }
 
 h3 {
@@ -100,8 +104,10 @@ ol ol {
 	margin: 4px 0 5px 30px;
 }
 
-strong {
+strong, b {
 	font-family: $header-font-family;
+	font-weight: 600;
+	color: #AAAAAA;
 }
 
 .arrow {

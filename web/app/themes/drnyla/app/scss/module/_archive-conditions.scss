@@ -18,6 +18,7 @@
 			padding-bottom: 15px;
 			font-size: 22px;
 			position: relative;
+			color: #747474;
 
 			span {
 				transition: transform .5s ease;
@@ -29,6 +30,8 @@
 			}
 
 			&.active {
+				color: $brandGold;
+				
 				span {
 					transform: translate(0, -50%) rotate(180deg);
 				}
@@ -42,6 +45,10 @@
 				li {
 					display: inline-block;
 					margin-right: 40px;
+
+					@include max-screen($screen-xs-max){
+						display: block;
+					}
 
 					a {
 						color: $brandGold;

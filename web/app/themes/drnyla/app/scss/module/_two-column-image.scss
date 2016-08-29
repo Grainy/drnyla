@@ -17,8 +17,16 @@
 		width: 60%;
 		float: left;
 
+		@include max-screen($screen-sm-min){
+			width: 100%;
+		}
+
 		#map-canvas {
 			height: 100%;
+
+			@include max-screen($screen-sm-min){
+				height: 300px;
+			}
 		}
 
 		img {
@@ -36,6 +44,11 @@
 		width: 40%;
 		float: left;
 		padding: 36px 50px;
+
+		@include max-screen($screen-sm-min){
+			width: 100%;
+			padding: 36px 10px;
+		}
 
 		@include max-screen($screen-md-min){
 			text-align: center;

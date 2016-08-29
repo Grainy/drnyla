@@ -25,7 +25,7 @@ Styleguide 2.1.3.
 	border: none;
 	font-family: $header-font-family;
 	text-transform: uppercase;
-	width: 310px;
+	// width: 310px;
 	height: 51px;
 	border-radius: 114px;
 
@@ -33,8 +33,9 @@ Styleguide 2.1.3.
 	@include max-screen($screen-xs-max) {
 		margin: 0 auto;
 		font-size: 18px;
-		padding: 6px 16px 8px;
+		padding: 8px 16px;
 		min-width: 100px;
+		// width: auto;
 	}
 
 	@include m(secondary) {

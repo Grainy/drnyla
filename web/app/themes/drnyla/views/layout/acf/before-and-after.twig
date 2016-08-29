@@ -1,0 +1,21 @@
+<div class="container b-before-and-after">
+	{% if media_item.header %}
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>{{media_item.header}}</h2>
+			</div>
+		</div>
+	{% endif %}
+	<div class="row">
+		{% if media_item.content %}
+			<div class="col-md-3">
+				{{media_item.content}}
+			</div>
+		{% endif %}
+		<div class="col-md-9 {% if not media_item.content %}col-centered{% endif %}">
+			{% for image in media_item.images %}
+			    <img src="{{image.image.url}}" alt="">
+			{% endfor %}
+		</div>
+	</div>
+</div>

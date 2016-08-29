@@ -7,9 +7,8 @@
 			<div class="l-page-section l-home__intro">
 				<div class="row">
 					<div class="col-md-4 l-home__intro--content">
-						<h2 class="text-center">Our top treatments</h2>
-						<p>Pellentesque lacinia quam vitae nisl tempus consequat. Nulla pharetra, justo eget viverra imperdiet, nisi tortor rhoncus justo, a cursus enim risus eget leo. Nullam eleifend odio ex. Aenean elit libero, condimentum et tincidunt id, luctus a dolor. Donec ultricies leo ullamco, bibendum sem non, finibus est.</p>
-						<p>Aliquam sit amet risus non tortor tincidunt tincidunt. Quisque suscipit volutpat mauris, eget fermentum sem venenatis sed. Ut sit amet tellus non velit finibus tempor. Integer ut nunc at eros interdum fringilla. Aenean a laoreet magna. Ut feugiat viverra enim, ac aliquet magna dictum non. Sed erat risus, posuere et venenatis id.</p>
+						<h2 class="text-center">{{post.get_field('top_treatments_title')}}</h2>
+						{{post.get_field('top_treatments_content')}}
 						<div class="text-center">
 							<a href="#" class="b-button">
 								View all our treatments
@@ -17,18 +16,12 @@
 						</div>
 					</div>
 					<div class="col-md-8 l-home__intro--grid">
-						<a href="#" class="treatment" style="background-image: url({{site.theme.link}}/app/img/tmp/treatment-1.png);">
-							<h3 class="ab-center">Treatment name</h3>
-						</a>
-						<a href="#" class="treatment" style="background-image: url({{site.theme.link}}/app/img/tmp/treatment-2.png);">
-							<h3 class="ab-center">Treatment name</h3>
-						</a>
-						<a href="#" class="treatment" style="background-image: url({{site.theme.link}}/app/img/tmp/treatment-3.png);">
-							<h3 class="ab-center">Treatment name</h3>
-						</a>
-						<a href="#" class="treatment" style="background-image: url({{site.theme.link}}/app/img/tmp/treatment-4.png);">
-							<h3 class="ab-center">Treatment name</h3>
-						</a>
+						{% for treatment in post.get_field('top_treatments_treatments') %}
+							{% set treatPost = TimberPost(treatment.treatment) %}
+						    <a href="{{treatPost.link}}" class="treatment" style="background-image: url({{treatment.image.url}}">
+						    	<h3 class="ab-center">{{treatPost.post_title}}</h3>
+						    </a>
+						{% endfor %}
 					</div>
 				</div>
 				<div class="row">
@@ -39,12 +32,12 @@
 				<div class="row l-home__video">
 					<div class="col-md-12">
 						<div class="video js-match-height">
-							<iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allowfullscreen></iframe>
+							<script src="//fast.wistia.com/embed/medias/{{post.get_field('success_story_id')}}.jsonp" async></script><script src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_{{post.get_field('success_story_id')}} videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
 						</div>
 						<div class="content js-match-height">
-							<p>“Aliquam scelerisque scelerisque magna quis semper in suscipit velit ipsum, at sagittis ipsum rutrum nec. Sed orci neque, commodo at libero quis, viverra mattis eros quis pellentesque enim, etiam non integer iaculis turpis in bibendum feugiat.”</p>
+							{{post.get_field('success_story_content')}}
 
-							<a href="#" class="b-button">More success stories</a>
+							<a href="/testimonials" class="b-button">More success stories</a>
 						</div>
 					</div>
 				</div>
@@ -59,7 +52,7 @@
 					<div class="col-md-6">
 						<div class="content">
 							<h2>ABOUT DR NYLA</h2>
-							<p>Dr. Nyla Raja is the founder and Medical Director of The Medispa, Wilmslow. She is a highly respected and much sought after Cosmetic Dermatology GP and is considered to be one of the top cosmetic doctors in the country. Having delivered over fifteen thousand treatments with truly exceptional results, she has gained the admiration and respect of TV personalities, celebrity figures and some of Britain's most familiar faces</p>
+							{{post.get_field('about_content')}}
 						</div>
 					</div>
 				</div>

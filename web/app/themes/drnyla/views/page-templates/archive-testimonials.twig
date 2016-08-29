@@ -2,81 +2,50 @@
 
 {% block content %}
 
-{% if postType == 'business' %}
-	{% set introTitle = options.business_title %}
-	{% set introContent = options.business_content %}
-{% elseif postType == 'personal' %}
-	{% set introTitle = options.personal_title %}
-	{% set introContent = options.personal_content %}
-{% else %}
-	{% set introTitle = options.blog_title %}
-	{% set introContent = options.blog_content %}
-{% endif %}
+{% set videos = [0, 4, 8] %}
+{% set images = [1, 2, 3, 5, 6, 7] %}
 
-<div class="l-page-section l-archive">
+<div class="l-page-section l-archive-testimonials">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2 text-center intro">
-				<h2>{{introTitle}}</h2>
-				{{introContent}}
-			</div>
-
-			{% for article in testimonials %}
-				<div class="col-lg-4 col-sm-6 b-latest-articles__article">
-					{% if article.thumbnail %}
-						<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
-					{% else %}
-						<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
-					{% endif %}
-
-					<div class="b-latest-articles__article--container js-match-height">
-						<h5><a href="{{article.link}}">{{article.title}}</a></h5>
-
-						<div class="b-latest-articles__article--meta">
-							<span class="tags">
-								{% for term in article.terms() %}
-								    <li class="{{term.slug}}">
-								    	<a href="{{term.link}}">{{term.name}}</a>
-								    </li>
-								{% endfor %}
-
-								<span class="date">
-									<p>{{article.post_date|time_diff}}</p>
-								</span>
-							</span>
+			{% for testimonial in testimonials %}
+				{% if loop.index0 in videos %}
+					<div class="l-archive-testimonials__video">
+						<div class="col-md-8 no-p-mob b-two-column-video__video js-match-height">
+							<div class="video js-match-height">
+								<script src="//fast.wistia.com/embed/medias/{{testimonial.success_story_id}}.jsonp" async></script><script src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_{{testimonial.success_story_id}} videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
+							</div>
 						</div>
 
-						{% if article.get_field('custom_blog_intro') %}
-							<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
-						{% else %}
-						    <p class="excerpt">{{article.content|excerpt(20)}}</p>
-						{% endif %}
-
+						<div class="col-md-4 b-two-column-video__content js-match-height">
+							{{testimonial.post_content}}
+						</div>
 					</div>
-				</div>
+				{% elseif loop.index0 in images %}
+					<div class="col-md-4 l-archive-testimonials__text js-match-height">
+						<div class="block-container">
+							<div class="img-container" style="background-image: url({{testimonial.thumbnail}})"></div>
+							{{testimonial.post_content}}
+							<p><strong>{{testimonial.post_title}}</strong></p>
+						</div>
+					</div>
+				{% else %}
+				    <div class="col-md-4 l-archive-testimonials__text js-match-height">
+						<div class="block-container">
+							{{testimonial.post_content}}
+							<p><strong>{{testimonial.post_title}}</strong></p>
+						</div>
+				    </div>
+				{% endif %}
 			{% endfor %}
-		</div>
-		<div class="pagination">
-			<div class="tool-pagination text-left">
-				<div class="col-xs-6 p0">
-					{% if pagination.prev %}
-					    <a href="{{pagination.prev.link}}" class="prev b-button b-button--secondary {{pagination.prev.link|length ? '' : 'invisible'}}">Previous</a>
-					{% endif %}
-				</div>
-
-
-				<div class="col-xs-6 p0 text-right">
-				    {% if pagination.next %}
-				        <a href="{{pagination.next.link}}" class="next b-button b-button--secondary {{pagination.next.link|length ? '' : 'invisible'}}">Next</a>
-				    {% endif %}
-			    </div>
-			</div>
 		</div>
 	</div>
 </div>
 
+{% include 'layout/acf/instagram-block.twig' %}
+
 {% include 'footer.twig' %}
-<pre>TEst</pre>
+
 {% endblock %}
 
 

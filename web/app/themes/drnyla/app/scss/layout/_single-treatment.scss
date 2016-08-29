@@ -1,0 +1,22 @@
+@include b(l-single-treatment){
+	position: relative;
+	margin-top: -84px;
+	margin-bottom: -84px;
+	z-index: 1;
+
+	@include e(header) {
+		background: $white;
+		padding: 36px 0 0;
+	}
+	
+	@include e(content) {
+		column-count: 2;
+		background: $white;
+		padding: 0 50px;
+
+		@include max-screen($screen-xs-max) {
+			column-count: 1;
+			padding: 0 15px;
+		}
+	}
+}

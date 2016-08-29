@@ -2,57 +2,35 @@
 
 {% block content %}
 
-<div class="l-page-section l-archive">
+<div class="l-page-section l-archive-treatments">
 	<div class="container">
-		<div class="row">
-			{% for article in treatments %}
-				<div class="col-lg-4 col-sm-6 b-latest-articles__article">
-					{% if article.thumbnail %}
-						<a href="{{article.link}}" class="img-link"><img src="{{article.thumbnail|resize(370, 250)}}" alt=""></a>
-					{% else %}
-						<a href="{{article.link}}" class="img-link"><img src="{{options.default_post_image.url|resize(370, 250)}}" alt=""></a>
-					{% endif %}
+		{% for article in treatments %}
+			<div class="row">
+				<div class="b-latest-articles__article">
+					<div class="col-sm-4 js-match-height {% if loop.index is odd %}pull-right{% endif %}">
+						{% if article.single_banner_image %}
+							<img src="{{TimberImage(article.single_banner_image)|resize(342, 265)}}" alt="">
+						{% else %}
+							<img src="{{options.default_post_image.url|resize(342, 265)}}" alt="">
+						{% endif %}
+					</div>
 
-					<div class="b-latest-articles__article--container js-match-height">
+
+					<div class="col-sm-8 b-latest-articles__article--container js-match-height {% if loop.index is odd %}pull-right{% endif %}">
 						<h5><a href="{{article.link}}">{{article.title}}</a></h5>
-
-						<div class="b-latest-articles__article--meta">
-							<span class="tags">
-								{% for term in article.terms() %}
-								    <li class="{{term.slug}}">
-								    	<a href="{{term.link}}">{{term.name}}</a>
-								    </li>
-								{% endfor %}
-							</span>
-						</div>
 
 						{% if article.get_field('custom_blog_intro') %}
 							<p class="excerpt">{{article.get_field('custom_blog_intro')}}</p>
 						{% else %}
-						    <p class="excerpt">{{article.content|excerpt(20)}}</p>
+						    <p class="excerpt">{{article.content|excerpt(50)}}</p>
 						{% endif %}
 
 					</div>
 				</div>
-			{% endfor %}
-		</div>
-		<div class="pagination">
-			<div class="tool-pagination text-left">
-				<div class="col-xs-6 p0">
-					{% if pagination.prev %}
-					    <a href="{{pagination.prev.link}}" class="prev b-button b-button--secondary {{pagination.prev.link|length ? '' : 'invisible'}}">Previous</a>
-					{% endif %}
-				</div>
-
-
-				<div class="col-xs-6 p0 text-right">
-				    {% if pagination.next %}
-				        <a href="{{pagination.next.link}}" class="next b-button b-button--secondary {{pagination.next.link|length ? '' : 'invisible'}}">Next</a>
-				    {% endif %}
-			    </div>
 			</div>
-		</div>
+		{% endfor %}
 	</div>
+</div>
 </div>
 
 {% include 'footer.twig' %}

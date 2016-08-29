@@ -1,0 +1,34 @@
+@include b(l-archive-testimonials) {
+	@include e(video) {
+		background: $white;
+		float: left;
+		padding: 0;
+		margin: 0 15px;
+	}
+
+	@include e(text) {
+		text-align: center;
+		margin: 45px 0;
+
+		@include max-screen($screen-sm-max){
+			clear: both;
+		}
+
+		.block-container {
+			background: $white;
+			padding: 30px 38px;
+		}
+
+		.img-container {
+			display: block;
+			margin: 0 auto 25px;
+			border-radius: 100%;
+			width: 180px;
+			height: 180px;
+			background-position: center center;
+			background-size: cover;
+		}
+	}
+}
+
+

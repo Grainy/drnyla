@@ -5,17 +5,21 @@ var faqs = (function($) {
 		_bind();
 	};
 
+	var _toggleDisplay = function($this, el, $el) {
+		if ($this.siblings(el).is(':visible')) {
+			$this.removeClass('active');
+			$this.siblings(el).slideUp();
+		} else {
+			$('.l-archive-conditions__condition h3').removeClass('active');
+			$(el).slideUp();
+			$this.addClass('active');
+			$this.siblings(el).slideDown();
+		}
+	};
+
 	var _bind = function() {
 		$('.l-archive-conditions__condition h3').on('click', function(e) {
-			if ($(this).siblings('.l-archive-conditions__condition--content').is(':visible')) {
-				$(this).removeClass('active');
-				$(this).siblings('.l-archive-conditions__condition--content').slideUp();
-			} else {
-				$('.l-archive-conditions__condition h3').removeClass('active');
-				$('.l-archive-conditions__condition--content').slideUp();
-				$(this).addClass('active');
-				$(this).siblings('.l-archive-conditions__condition--content').slideDown();
-			}
+			_toggleDisplay($(this), '.l-archive-conditions__condition--content');
 		});
 	};
 

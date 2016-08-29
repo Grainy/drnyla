@@ -8,6 +8,16 @@
 				<div class="h-100 l-masthead__container">
 					{% set template = post._wp_page_template %}
 
+					<div class="burger-container show-on-all-tabs">
+						<div class="inner">
+							<span class="burger-icon"></span>
+						</div>
+					</div>
+
+					<div class="l-masthead__logo ab-center show-on-all-tabs"></div>
+
+					<div class="l-masthead__phone show-on-all-tabs"><a href="tel:08000096661" class="icon-phone"></a></div>
+
 					<div class="l-masthead__nav masthead-item dont-show-me-on-tabs">
 						<ul>
 							{% for item in primaryNav.get_items %}
@@ -26,12 +36,6 @@
 								</li>
 							{% endfor %}
 						</ul>
-					</div>
-
-					<div class="burger-container show-on-all-tabs">
-						<div class="inner">
-							<span class="burger-icon"></span>
-						</div>
 					</div>
 				</div>
 			</div>

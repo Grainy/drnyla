@@ -1,17 +1,50 @@
-<nav class="mobile l-masthead__nav--mobile show-on-all-tabs js-mobile-nav">
-	<ul>
-		<li class='nav-item'>
-			<div class='has-dropdown'>
-				<ul class='dropdown l-masthead__nav--mobile-primary-items'>
-					{% for item in primaryNav.get_items %}
-						<li class="dropdown-item {{item.classes | join(' ')}}">
-							<a class="" href="{{item.get_link}}">
-								{{item.title}}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
+<div class="l-masthead__nav--mobile-container js-mobile-nav">
+	<div class="l-masthead__nav--mobile show-on-all-tabs">
+
+		<div class="l-masthead__nav--mobile-header">
+
+			<div class="burger-container show-on-all-tabs">
+				<div class="inner">
+					<span class="burger-icon js-burger-icon"></span>
+				</div>
 			</div>
-		</li>
-	</ul>
-</nav>
+		</div>
+
+		<ul class="l-masthead__nav--mobile-primary-items">
+			{% for item in primaryNav.get_items %}
+				<li class="{{item.classes | join(' ')}}">
+					<a class="" href="{{item.get_link}}">
+						{{item.title}}
+					</a>
+				</li>
+
+				{% if item.get_children %}
+					<ul class="l-masthead__nav--mobile-subnav">
+						<div class="l-masthead__nav--mobile-header">
+							<div class="burger-container show-on-all-tabs">
+								<div class="inner">
+									<span class="burger-icon js-burger-icon-subnav"></span>
+								</div>
+							</div>
+						</div>
+						{% for child in item.get_children %}
+							<li class="l-masthead__nav--mobile-subnav-item {{child.classes | join(' ')}}">
+								<a class="js-sub-item" href="{{child.get_link}}">{{child.title}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+		<ul class="l-masthead__nav--mobile-footer-items">
+			{% for item in footerNav.get_items %}
+				<li class="{{item.classes | join(' ')}}">
+					<a class="" href="{{item.get_link}}">
+						{{item.title}}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
