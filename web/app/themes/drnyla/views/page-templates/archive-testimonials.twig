@@ -22,9 +22,14 @@
 						</div>
 					</div>
 				{% elseif loop.index0 in images %}
+					{% if testimonial.thumbnail %}
+						{% set testImg = testimonial.thumbnail %}
+					{% else %}
+					    {% set testImg = site.theme.link~'/app/img/tmp/placeholder.jpg' %}
+					{% endif %}
 					<div class="col-md-4 l-archive-testimonials__text js-match-height">
 						<div class="block-container">
-							<div class="img-container" style="background-image: url({{testimonial.thumbnail}})"></div>
+							<div class="img-container" style="background-image: url({{testImg}})"></div>
 							{{testimonial.post_content}}
 							<p><strong>{{testimonial.post_title}}</strong></p>
 						</div>

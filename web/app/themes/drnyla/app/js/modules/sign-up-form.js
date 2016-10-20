@@ -100,6 +100,6 @@ var signUp = (function($) {
 
 })(jQuery);
 
-jQuery(document).ready(function($) {
-	signUp.init();
-});
+// jQuery(document).ready(function($) {
+// 	signUp.init();
+// });

@@ -15,10 +15,10 @@
 							</a>
 						</div>
 					</div>
-					<div class="col-md-8 l-home__intro--grid">
+					<div class="col-md-12 l-home__intro--grid">
 						{% for treatment in post.get_field('top_treatments_treatments') %}
 							{% set treatPost = TimberPost(treatment.treatment) %}
-						    <a href="{{treatPost.link}}" class="treatment" style="background-image: url({{treatment.image.url}}">
+						    <a href="{{treatPost.link}}" class="treatment" style="background-image: url({{treatment.image.url}})">
 						    	<h3 class="ab-center">{{treatPost.post_title}}</h3>
 						    </a>
 						{% endfor %}
@@ -34,7 +34,7 @@
 						<div class="video js-match-height">
 							<script src="//fast.wistia.com/embed/medias/{{post.get_field('success_story_id')}}.jsonp" async></script><script src="//fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_{{post.get_field('success_story_id')}} videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
 						</div>
-						<div class="content js-match-height">
+						<div class="content text-center js-match-height">
 							{{post.get_field('success_story_content')}}
 
 							<a href="/testimonials" class="b-button">More success stories</a>
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		{% include 'layout/acf/instagram-block.twig' %}
 
 		<div class="l-home__about">

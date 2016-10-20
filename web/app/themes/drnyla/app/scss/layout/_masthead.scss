@@ -81,10 +81,60 @@
 		background: url("../img/logo/logo.png") no-repeat;
 		@include image-2x("../img/logo/logo@2x.png", contain);
 		background-position: center center;
+		text-decoration: none;
 	}
 
 	@include e(container) {
 		height: 100%;
+	}
+
+	@include e(subnav) {
+		display: none;
+		position: absolute;
+		width: 100%;
+		text-align: left;
+		column-count: 4;
+		padding: 30px;
+		background-color: $brandCream;
+		-webkit-column-break-inside: avoid;
+		margin-top: 91px;
+
+		@include m(item) {
+			display: block;
+			-webkit-column-break-inside: avoid;
+			-webkit-margin-after: 0;
+
+			&:after {
+				content: '';
+				display: block;
+				height: 15px;
+			}
+
+			a {
+				text-transform: none !important;
+				font-weight: 300 !important;
+				top: 0 !important;
+				color: #b1915c !important;
+
+				&:after {
+					display: none !important;
+				}
+
+				&:hover {
+					&:after {
+						content: "";
+						display: block !important;
+						height: 0px;
+						width: 100%;
+						position: absolute;
+						bottom: 4px;
+						left: 0;
+						transition: height .25s ease;
+						height: 2px !important;
+					}
+				}
+			}
+		}
 	}
 
 	@include e(nav) {
@@ -94,7 +144,7 @@
 		flex: 3 !important;
 		text-align: center;
 
-		ul {
+		> ul {
 			margin: 0;
 			height: 109px;
 			display: flex;
@@ -108,7 +158,8 @@
 			font-size: 14px;
 			line-height: 17px;
 			text-align: center;
-			position: relative;
+			height: 100%;
+			// position: relative;
 
 			&:last-child {
 				margin-right: 0;
@@ -117,9 +168,18 @@
 			@include max-screen($screen-md-max) {
 				margin-right: 30px;
 			}
-			
+
+			&.menu-item-has-children {
+				&:hover {
+					> .l-masthead__subnav {
+						display: block;
+					}
+				}
+			}
+
 			a {
 				position: relative;
+				top: 45px;
 
 				&:after {
 					content: "";
@@ -134,16 +194,36 @@
 			}
 
 			&.logo-replacement {
-				width: 119px;
-				height: 77px;
-				background: url("../img/logo/logo.png") no-repeat;
-				@include image-2x("../img/logo/logo@2x.png", contain);
-				background-position: center center;
-
 				a {
 					display: block;
-					opacity: 0;
-					height: 100%;
+					width: 119px;
+					height: 77px;
+					background: url("../img/logo/logo.png") no-repeat;
+					@include image-2x("../img/logo/logo@2x.png", contain);
+					background-position: center center;
+					position: relative;
+					top: 20px;
+					text-indent: -9999999px;
+					left: 50%;
+					transform: translate(-50%);
+
+					&:hover {
+						&:after {
+							display: none !important;
+						}
+					}
+				}
+
+				&:hover {
+					&:after {
+						display: none !important;
+					}
+
+					a{
+						&:after {
+							display: none !important;
+						}
+					}
 				}
 			}
 
@@ -180,7 +260,7 @@
 				}
 			}
 		}
-		
+
 		@include m(mobile-container) {
 			position: fixed;
 			z-index: 2002;
@@ -316,69 +396,17 @@
 		@include m(mobile-subnav) {
 			position: absolute;
 			background-color: $white;
-			width: 95%;
-			height: 100%;
+			width: 100%;
+			min-height: 100%;
 			top: 0;
-			right: 0;
-			transform: translate(110%);
+			left: 0;
+			transform: translate(-100%);
 			transition: transform .25s ease;
-			box-shadow: -2px 0px 3px 0px rgba(0,0,0,0.25);
+			box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.25);
 			z-index: 1;
 
 			&.menu-active {
 				transform: translate(0%);
-			}
-		}
-	}
-
-	@include e(subnav) {
-		display: none;
-		position: absolute;
-		top: 100%;
-		width: 100%;
-		left: 0;
-
-		@include m(item) {
-			background: $brandGold;
-			border-radius: 3px;
-			box-shadow: inset 0px 1px 3px 1px rgba(255,255,255,0.3);
-			display: block;
-			padding: 10px 36px 12px;
-			width: 140%;
-			position: relative;
-			left: -20%;
-			margin-top: 6px;
-
-			&:hover {
-				background: $brandGold;
-
-				a {
-					color: $body-font-color;
-				}
-			}
-
-			&:first-child {
-				margin-top: 24px;
-				&:before {
-					-webkit-backface-visibility: hidden;
-					background: $brandGold;
-					border-radius: 2px;
-					box-shadow: -3px -3px 5px 0px rgba(0,0,0,0.1);
-					content: "";
-					display: block;
-					height: 20px;
-					position: absolute;
-					transform: rotate(45deg) skew(5deg, 5deg) translate(-50%, 0);
-					top: 0px;
-					left: 50%;
-					width: 20px;
-				}
-
-				&:hover {
-					&:before {
-						background: $brandGold;
-					}
-				}
 			}
 		}
 	}

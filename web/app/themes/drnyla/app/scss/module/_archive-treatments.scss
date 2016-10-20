@@ -13,6 +13,7 @@
 			margin-top: 44px;
 			float: left;
 			background: $white;
+			width: 100%;
 
 			@include max-screen($screen-xs-max) {
 				padding-top: 20px;

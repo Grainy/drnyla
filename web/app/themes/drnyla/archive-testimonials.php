@@ -38,8 +38,8 @@ if ( is_day() ) {
 $args = array(
 	'post_type' => 'testimonials',
 	'posts_per_page' => -1,
-	'orderby'			=> 'title',
-	'order'				=> 'ASC'
+	'orderby'			=> 'date',
+	'order'				=> 'DESC'
 );
 
 $context['testimonials'] = Timber::get_posts($args);

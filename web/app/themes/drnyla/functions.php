@@ -671,7 +671,7 @@ jQuery('#input_<?php echo $form['id']?>_<?php echo $field['id']?>').attr('placeh
 // *** CREATE BESKPOKE GFORM BUTTONS ***
 add_filter( 'gform_submit_button', 'club_form_submit_button', 10, 2 );
 function club_form_submit_button( $button, $form ) {
-    return "<button class='b-button b-button--submit'><span>Sign up</span></button>";
+    return "<button class='b-button b-button--submit'><span>Submit</span></button>";
 }
 
 // *** IMAGE SIZES ***

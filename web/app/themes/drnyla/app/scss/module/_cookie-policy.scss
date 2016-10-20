@@ -6,14 +6,14 @@
 	z-index: 10000;
 	top: 0;
 	left: 0;
-	background-color: #1B1727;
+	background-color: $brandCream;
 
 	@include min-screen($screen-md-min) {
 		height: 62px;
 	}
 
 	p {
-		color: #f2f2f2;
+		color: $body-font-color;
 		font-size: 12px;
 		line-height: 19px;
 		margin-bottom: 0;
@@ -36,6 +36,14 @@
 	}
 
 	@include e(button) {
+		.b-button--tertiary {
+			width: auto;
+			height: auto;
+			padding: 10px 20px;
+			background-color: $brandGold;
+			color: $white;
+		}
+
 		@include min-screen($screen-md-min) {
 			position: relative;
 			top: 50%;

@@ -347,6 +347,17 @@ var mobileNav = (function($) {
 
 			isAnimating = !isAnimating;
 		});
+
+		$('.js-burger-icon-subnav').on('click', function() {
+			$('.l-masthead__nav--mobile-subnav').removeClass('menu-active');
+		});
+
+		$(document).on('click', '.l-masthead__nav--mobile-primary-items .menu-item-has-children', function(event) {
+			if (!$(event.target).hasClass('js-sub-item')) {
+				event.preventDefault();
+				$(this).next('.l-masthead__nav--mobile-subnav').addClass('menu-active');
+			}
+		});
 	};
 
 	return {
@@ -486,9 +497,9 @@ var signUp = (function($) {
 
 })(jQuery);
 
-jQuery(document).ready(function($) {
-	signUp.init();
-});
+// jQuery(document).ready(function($) {
+// 	signUp.init();
+// });
 
 var singlePageNav = (function($) {
 	var self = this;
@@ -1095,6 +1106,12 @@ var boilerAPP = (function($) {
 	};
 
 	var _fancySelect = function() {
+
+		
+		$(document).bind('gform_pre_submission', function(){
+			console.log('fuck you');
+		});
+
 		$(document).bind('gform_post_render', function(){
 			$('input[type=file]').customFile();
 			$('select').fancySelect();

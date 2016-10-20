@@ -93,6 +93,12 @@ var boilerAPP = (function($) {
 	};
 
 	var _fancySelect = function() {
+
+		
+		$(document).bind('gform_pre_submission', function(){
+			console.log('fuck you');
+		});
+
 		$(document).bind('gform_post_render', function(){
 			$('input[type=file]').customFile();
 			$('select').fancySelect();
