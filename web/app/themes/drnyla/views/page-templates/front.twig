@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="l-page-section l-home__intro">
 				<div class="row">
-					<div class="col-md-4 l-home__intro--content">
+					{# <div class="col-md-4 l-home__intro--content">
 						<h2 class="text-center">{{post.get_field('top_treatments_title')}}</h2>
 						{{post.get_field('top_treatments_content')}}
 						<div class="text-center">
@@ -14,7 +14,7 @@
 								View all our treatments
 							</a>
 						</div>
-					</div>
+					</div>#}
 					<div class="col-md-12 l-home__intro--grid">
 						{% for treatment in post.get_field('top_treatments_treatments') %}
 							{% set treatPost = TimberPost(treatment.treatment) %}

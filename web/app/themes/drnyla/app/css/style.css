@@ -1747,6 +1747,12 @@ div.fancy-select {
     .archive .l-hero, .blog .l-hero, .single .l-hero {
       max-height: 280px; } }
 
+.l-aftercare {
+  padding: 25px 0;
+  border-bottom: 1px solid #C3A46E; }
+  .l-aftercare h2 {
+    margin-bottom: 15px; }
+
 .l-footer {
   background-color: #FCFAF7; }
   @media only screen and (min-width: 768px) {

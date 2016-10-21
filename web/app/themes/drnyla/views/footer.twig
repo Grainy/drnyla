@@ -1,3 +1,15 @@
+{% if options.show_aftercare %}
+	<footer class="l-aftercare text-center">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-sm-12">
+					<h2>{{options.aftercare_title}}</h2>
+					{{options.aftercare_content}}
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endif %}
 <footer>
 	<div class="l-footer">
 		<div class="container h-100">

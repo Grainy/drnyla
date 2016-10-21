@@ -1,3 +1,12 @@
+@include b(l-aftercare) {
+	padding: 25px 0;
+	border-bottom: 1px solid $brandGold;
+
+	h2 {
+		margin-bottom: 15px;
+	}
+}
+
 @include b(l-footer) {
 	background-color: $brandCream;
 
